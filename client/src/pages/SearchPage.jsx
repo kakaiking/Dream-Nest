@@ -42,26 +42,26 @@ const SearchPage = () => {
           ({
             _id,
             creator,
-            listingPhotoPaths,
-            city,
-            province,
-            country,
+            title,
+            bidExpiry,
+            financialInstruments,
+            returns,
             category,
             type,
-            price,
-            booking = false,
+            target,
+            booking=false
           }) => (
             <ListingCard
-              listingId={_id}
-              creator={creator}
-              listingPhotoPaths={listingPhotoPaths}
-              city={city}
-              province={province}
-              country={country}
-              category={category}
-              type={type}
-              price={price}
-              booking={booking}
+            listingId={_id}
+            title={title}
+            creator={creator}
+            bidExpiry={bidExpiry}
+            financialInstruments={financialInstruments}
+            returns={returns}
+            category={category}
+            type={type}
+            target={target}
+            booking={booking}
             />
           )
         )}

@@ -12,31 +12,19 @@ import { setWishList } from "../redux/state";
 const ListingCard = ({
   listingId,
   creator,
-  listingPhotoPaths,
-  city,
-  province,
-  country,
-  category,
+  bidExpiry,
+  financialInstruments,
+  category, 
   type,
-  price,
+  title,
+  returns,
+  paymentDates,
+  target,
   startDate,
   endDate,
   totalPrice,
   booking,
 }) => {
-  /* SLIDER FOR IMAGES */
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const goToPrevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + listingPhotoPaths.length) % listingPhotoPaths.length
-    );
-  };
-
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % listingPhotoPaths.length);
-  };
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -73,39 +61,14 @@ const ListingCard = ({
       <div className="slider-container">
         <div
           className="slider"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {listingPhotoPaths?.map((photo, index) => (
-            <div key={index} className="slide">
-              <img
-                src={`http://localhost:3001/${photo?.replace("public", "")}`}
-                alt={`photo ${index + 1}`}
-              />
-              <div
-                className="prev-button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrevSlide(e);
-                }}
-              >
-                <ArrowBackIosNew sx={{ fontSize: "15px" }} />
-              </div>
-              <div
-                className="next-button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNextSlide(e);
-                }}
-              >
-                <ArrowForwardIos sx={{ fontSize: "15px" }} />
-              </div>
-            </div>
-          ))}
+         <img src="../assets/target.jpg" alt="project pic`" /> 
         </div>
       </div>
 
+      <h2>{title}</h2>
       <h3>
-        {city}, {province}, {country}
+        {returns}%,  {financialInstruments}
       </h3>
       <p>{category}</p>
 
@@ -113,7 +76,7 @@ const ListingCard = ({
         <>
           <p>{type}</p>
           <p>
-            <span>${price}</span> per night
+            <span>Target: {target}</span> 
           </p>
         </>
       ) : (
@@ -138,7 +101,7 @@ const ListingCard = ({
         {isLiked ? (
           <Favorite sx={{ color: "red" }} />
         ) : (
-          <Favorite sx={{ color: "white" }} />
+          <Favorite sx={{ color: "rgb(100,100,200)"}} />
         )}
       </button>
     </div>

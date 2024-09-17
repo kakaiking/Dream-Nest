@@ -40,7 +40,7 @@ const ReservationList = () => {
   ) : (
     <>
       <Navbar />
-      <h1 className="title-list">Your Reservation List</h1>
+      <h1 className="title-list">Your Projects' Bids</h1>
       <div className="list">
         {reservationList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
           <ListingCard

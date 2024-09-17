@@ -30,6 +30,7 @@ const Navbar = () => {
           type="text"
           placeholder="Search ..."
           value={search}
+          style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
           onChange={(e) => setSearch(e.target.value)}
         />
         <IconButton disabled={search === ""}>
@@ -43,11 +44,11 @@ const Navbar = () => {
       <div className="navbar_right">
         {user ? (
           <a href="/create-listing" className="host">
-            Become A Host
+            Start A Funding Project
           </a>
         ) : (
           <a href="/login" className="host">
-            Become A Host
+            Start A Funding Project
           </a>
         )}
 
@@ -79,11 +80,11 @@ const Navbar = () => {
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
-            <Link to={`/${user._id}/trips`}>Trip List</Link>
             <Link to={`/${user._id}/wishList`}>Wish List</Link>
-            <Link to={`/${user._id}/properties`}>Property List</Link>
-            <Link to={`/${user._id}/reservations`}>Reservation List</Link>
-            <Link to="/create-listing">Become A Host</Link>
+            <Link to={`/${user._id}/trips`}>My Bids</Link>
+            <Link to={`/${user._id}/properties`}>My Hosted Projects</Link>
+            <Link to={`/${user._id}/reservations`}>My Projects' Bids</Link>
+            <Link to="/create-listing">Host A Project</Link>
 
             <Link
               to="/login"

@@ -60,25 +60,27 @@ const Listings = () => {
             ({
               _id,
               creator,
-              listingPhotoPaths,
-              city,
-              province,
-              country,
+              title,
+              bidExpiry,
+              financialInstruments,
+              returns,
               category,
               type,
-              price,
+              target,
+              highlightDesc,
               booking=false
             }) => (
               <ListingCard
                 listingId={_id}
+                title={title}
                 creator={creator}
-                listingPhotoPaths={listingPhotoPaths}
-                city={city}
-                province={province}
-                country={country}
+                bidExpiry={bidExpiry}
+                financialInstruments={financialInstruments}
+                returns={returns}
                 category={category}
                 type={type}
-                price={price}
+                target={target}
+                highlightDesc = {highlightDesc}
                 booking={booking}
               />
             )
