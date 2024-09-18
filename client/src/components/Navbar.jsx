@@ -84,6 +84,7 @@ const Navbar = () => {
             <Link to={`/${user._id}/trips`}>My Bids</Link>
             <Link to={`/${user._id}/properties`}>My Hosted Projects</Link>
             <Link to={`/${user._id}/reservations`}>My Projects' Bids</Link>
+            <Link to={`/${user._id}/details`}>My Profile</Link>
             <Link to="/create-listing">Host A Project</Link>
 
             <Link

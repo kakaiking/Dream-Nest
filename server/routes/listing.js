@@ -46,16 +46,25 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       title,
       description,
       highlightDesc,
-    })
+    });
 
-    await newListing.save()
+    const savedListing = (await newListing.save()).populate("creator");
 
-    res.status(200).json(newListing)
+    const user = await User.findById(creator);
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    user.propertyList.push(savedListing);
+    await user.save();
+
+    res.status(200).json(savedListing);
   } catch (err) {
-    res.status(409).json({ message: "Fail to create Listing", error: err.message })
-    console.log(err)
+    console.log(err);
+    res.status(409).json({ message: "Failed to create listing", error: err.message });
   }
 });
+
 
 /* GET lISTINGS BY CATEGORY */
 router.get("/", async (req, res) => {

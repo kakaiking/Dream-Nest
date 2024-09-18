@@ -15,9 +15,34 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    phoneNumber: {
+      type: Number,
+      default: '',      
+      unique: true,
+    },
     password: {
       type: String,
       required: true,
+    },
+    firmName: {
+      type: String,
+      default: '',
+    },
+    yearStarted: {
+      type: Date,
+      default: '',
+    },
+    cmaCertified: {
+      type: String,
+      default: '',
+    },
+    assetsUnderMnagement: {
+      type: Number,
+      default: '',
+    },
+    physicalAddress: {
+      type: String,
+      default: '',
     },
     profileImagePath: {
       type: String,

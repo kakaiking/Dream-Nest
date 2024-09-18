@@ -4,7 +4,24 @@ const Booking = require("../models/Booking")
 const User = require("../models/User")
 const Listing = require("../models/Listing")
 
-/* GET TRIP LIST */
+// Route to Get One User from database by id
+router.get("/:userId/details", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+/* GET USER'S TRIP LIST */
 router.get("/:userId/trips", async (req, res) => {
   try {
     const { userId } = req.params
@@ -16,7 +33,7 @@ router.get("/:userId/trips", async (req, res) => {
   }
 })
 
-/* ADD LISTING TO WISHLIST */
+/* ADD LISTING TO USER'S WISHLIST */
 router.patch("/:userId/:listingId", async (req, res) => {
   try {
     const { userId, listingId } = req.params
@@ -40,11 +57,14 @@ router.patch("/:userId/:listingId", async (req, res) => {
   }
 })
 
-/* GET PROPERTY LIST */
+
+
+/* GET USER'S PROPERTY LIST and add it to the empty array "propertyList" in the user*/
 router.get("/:userId/properties", async (req, res) => {
   try {
     const { userId } = req.params
     const properties = await Listing.find({ creator: userId }).populate("creator")
+
     res.status(202).json(properties)
   } catch (err) {
     console.log(err)
@@ -52,7 +72,8 @@ router.get("/:userId/properties", async (req, res) => {
   }
 })
 
-/* GET RESERVATION LIST */
+
+/* GET USER'S RESERVATION LIST */
 router.get("/:userId/reservations", async (req, res) => {
   try {
     const { userId } = req.params

@@ -10,7 +10,6 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer"
 import { grey } from "@mui/material/colors";
-import HostInfo from "../components/HostInfo";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -369,91 +368,91 @@ const ListingDetails = () => {
             <div className="profileContent">
               <div className="verifiedProfile">
                 <div className="verifiedProfileHeader">
-                  <h1>Verified Profile</h1>
+                  <h1>Professional Details:</h1>
                 </div>
-                <div className="verifiedProfileHeader2">
-                  <h2>All information below has been verified</h2>
-                </div>
+                {/* <div className="verifiedProfileHeader2">
+                                        <h2>All information below has been verified</h2>
+                                    </div> */}
                 <div className="verifiedProfileData">
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Country</h2>
+                      <h2 className="country">Company / Firm Name</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">Kenya</h2>
+                      <h3 className="countryName">{listing.creator.firmName}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Markets</h2>
+                      <h2 className="country">Been A Fund Manager Since</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">Kiambu, Nairobi, Thika</h2>
+                      <h3 className="countryName">19/02/2001</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Company Registration Date</h2>
+                      <h2 className="country">CMA License Number</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">09/12/2016</h2>
+                      <h3 className="countryName">187</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Business Model</h2>
+                      <h2 className="country">LinkedIn Profile / Professional Website</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">B2B, B2C</h2>
+                      <h3 className="countryName">muamana.ac.ke</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Main Client Types</h2>
+                      <h2 className="country"> Hosted Funding Projects</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">Consumers</h2>
+                      <h3 className="countryName">{listing.creator.propertyList.length}</h3>
+                    </div>
+                  </div>
+                  <div className="separator"></div>
+
+
+                  <div className="verifiedDatum">
+                    <div className="verifiedDatumTitle">
+                      <h2 className="country">Assets Under Management</h2>
+                    </div>
+                    <div className="verifiedDatumData">
+                      <h3 className="countryName">2</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Delivery Methods</h2>
+                      <h2 className="country">Major Investment Tools Used</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">Wells Fargo, Rider</h2>
+                      <h3 className="countryName">Securities, Commercial Papers</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
 
                   <div className="verifiedDatum">
                     <div className="verifiedDatumTitle">
-                      <h2 className="country">Revenue (Last 180 days)</h2>
+                      <h2 className="country">Physical Address</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h2 className="countryName">30,000 /=</h2>
+                      <h3 className="countryName">P.O BOX 25749-00603, Nairobi</h3>
                     </div>
                   </div>
-                  <div className="separator"></div>
-
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Founder</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h2 className="countryName">Phil Kakai</h2>
-                    </div>
-                  </div>
-                  <div className="separator"></div>
                 </div>
               </div>
             </div>
