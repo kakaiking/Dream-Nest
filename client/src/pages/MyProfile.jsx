@@ -4,13 +4,13 @@ import Loader from '../components/Loader';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import "../styles/MyProfile.scss"
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { setProfileDetails, setPropertyList } from '../redux/state';
 import ListingCard from '../components/ListingCard';
 
 const MyProfile = () => {
     const [user, setUser] = useState({});
-    const [propertyList, setPropertyList] = useState([]);    
+    const [propertyList, setPropertyList] = useState([]);
     const [loading, setLoading] = useState(true);
     const { userId } = useParams();
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const MyProfile = () => {
                 setUser(data);
                 setPropertyList(data.propertyList || []);
                 console.log(data);
-                console.log(data.propertyList);
+                console.log(propertyList);
             } else {
                 console.error('Error fetching user details:', response.status);
             }
@@ -41,7 +41,7 @@ const MyProfile = () => {
         }
     };
 
-    
+
 
     useEffect(() => {
         getUserDetails();
@@ -144,34 +144,34 @@ const MyProfile = () => {
                 </section>
 
                 {/* <!-- Toggle Shop nav --> */}
-                <section id="toggleShops">
+                {/* <section id="toggleShops">
                     <div className="toggleBtnss">
-                        {/* <div id="ProductsHeader" className="toggleHeaderProducts toggleHeaderBorder">
+                        <div id="ProductsHeader" className="toggleHeaderProducts toggleHeaderBorder">
               <h2>Description</h2>
-            </div> */}
+            </div>
                         <button
                             id="ProductsHeader"
                             className={`header-btn toggleHeaderProductss ${activeTab === 'one' ? 'toggleHeaderBorders' : ''}`}
                             onClick={() => handleTabChange('one')}
                         >1</button>
 
-                        {/* <div id="ProfileHeader" className="toggleHeaderProfile">
+                        <div id="ProfileHeader" className="toggleHeaderProfile">
               <h2>Updates</h2>
-            </div> */}
+            </div>
                         <button
                             id="ProductsHeader"
                             className={`header-btn toggleHeaderProductss ${activeTab === 'two' ? 'toggleHeaderBorders' : ''}`}
                             onClick={() => handleTabChange('two')}
                         >2</button>
 
-                        {/* <div id="ProfileHeader" className="toggleHeaderProfile">
+                        <div id="ProfileHeader" className="toggleHeaderProfile">
               <h2>Host</h2>
-            </div> */}
+            </div>
 
                     </div>
-                </section>
+                </section> */}
 
-                <div className={`tab ${activeTab === 'one' ? 'one' : 'hidden'}`}>
+                <div className={`tab`}>
                     {/* Profile Tab */}
                     <section id="profile" > {/* Changed hidden to inline style */}
                         <div className="profileContent">
@@ -266,41 +266,6 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </section>
-                </div>
-
-                <div className={`tab ${activeTab === 'two' ? 'two' : 'hidden'}`}>
-                    {/* Profile Tab */}
-                    <div className="list">
-                        
-                        {propertyList.length > 0 ? (propertyList.map(
-                            ({
-                                _id,
-                                creator,
-                                title,
-                                bidExpiry,
-                                financialInstruments,
-                                returns,
-                                category,
-                                type,
-                                target,
-                                booking = false
-                            }) => (
-                                <ListingCard
-                                    key={_id}
-                                    listingId={_id}
-                                    title={title}
-                                    creator={creator}
-                                    bidExpiry={bidExpiry}
-                                    financialInstruments={financialInstruments}
-                                    returns={returns}
-                                    category={category}
-                                    type={type}
-                                    target={target}
-                                    booking={booking}
-                                />
-                            )
-                        )): "This User Hasn't Hosted Any Project"}
-                    </div>
                 </div>
 
 

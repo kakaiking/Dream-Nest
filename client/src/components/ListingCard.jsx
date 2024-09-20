@@ -14,15 +14,17 @@ const ListingCard = ({
   creator,
   bidExpiry,
   financialInstruments,
-  category, 
+  category,
   type,
   title,
   returns,
   paymentDates,
   target,
-  startDate,
-  endDate,
+  customerEmail,
+  customerName,
   totalPrice,
+  listingTitle,
+  customerReturns,
   booking,
 }) => {
 
@@ -37,18 +39,18 @@ const ListingCard = ({
 
   const patchWishList = async () => {
     if (user?._id !== creator._id) {
-    const response = await fetch(
-      `http://localhost:3001/users/${user?._id}/${listingId}`,
-      {
-        method: "PATCH",
-        header: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    dispatch(setWishList(data.wishList));
-  } else { return }
+      const response = await fetch(
+        `http://localhost:3001/users/${user?._id}/${listingId}`,
+        {
+          method: "PATCH",
+          header: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      dispatch(setWishList(data.wishList));
+    } else { return }
   };
 
   return (
@@ -59,33 +61,32 @@ const ListingCard = ({
       }}
     >
       <div className="slider-container">
-        <div
-          className="slider"
-        >
-         <img src="../assets/target.jpg" alt="project pic`" /> 
+        <div className="slider" >
+          {/* <img src="../assets/target.jpg" alt="project pic`" />  */}
         </div>
       </div>
 
-      <h2>{title}</h2>
-      <h3>
-        {returns}%,  {financialInstruments}
-      </h3>
-      <p>{category}</p>
+
 
       {!booking ? (
         <>
+          <h2>{title}</h2>
+          <h3> {returns}%,  {financialInstruments} </h3>
+          <p>{category}</p>
           <p>{type}</p>
           <p>
-            <span>Target: {target}</span> 
-          </p>
+            <span>
+              Target: <span style={{ color: '#c33764' }}>{target}</span>
+            </span>          </p>
         </>
       ) : (
         <>
+          <h2>{listingTitle}</h2>
           <p>
-            {startDate} - {endDate}
+            {customerName} / {customerEmail}  
           </p>
           <p>
-            <span>${totalPrice}</span> total
+            Bid: <span>Ksh{totalPrice}</span> 
           </p>
         </>
       )}
@@ -101,7 +102,7 @@ const ListingCard = ({
         {isLiked ? (
           <Favorite sx={{ color: "red" }} />
         ) : (
-          <Favorite sx={{ color: "rgb(100,100,200)"}} />
+          <Favorite sx={{ color: "white" }} />
         )}
       </button>
     </div>

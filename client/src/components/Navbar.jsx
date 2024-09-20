@@ -36,7 +36,7 @@ const Navbar = () => {
         <IconButton disabled={search === ""}>
           <Search
             sx={{ color: variables.pinkred }}
-            onClick={() => {navigate(`/properties/search/${search}`)}}
+            onClick={() => { navigate(`/properties/search/${search}`) }}
           />
         </IconButton>
       </div>
@@ -80,11 +80,11 @@ const Navbar = () => {
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
+            <Link to={`/${user._id}/details`}>My Profile</Link>
             <Link to={`/${user._id}/wishList`}>Wish List</Link>
             <Link to={`/${user._id}/trips`}>My Bids</Link>
             <Link to={`/${user._id}/properties`}>My Hosted Projects</Link>
             <Link to={`/${user._id}/reservations`}>My Projects' Bids</Link>
-            <Link to={`/${user._id}/details`}>My Profile</Link>
             <Link to="/create-listing">Host A Project</Link>
 
             <Link

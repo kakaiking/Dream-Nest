@@ -41,22 +41,40 @@ const TripList = () => {
     <>
       <Navbar />
       <h1 className="title-list">Your Bid List</h1>
-      <div className="list">
-        {tripList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
-          <ListingCard
-            listingId={listingId._id}
-            creator={hostId._id}
-            listingPhotoPaths={listingId.listingPhotoPaths}
-            city={listingId.city}
-            province={listingId.province}
-            country={listingId.country}
-            category={listingId.category}
-            startDate={startDate}
-            endDate={endDate}
-            totalPrice={totalPrice}
-            booking={booking}
-          />
-        ))}
+      <div className="tableContent">
+        <table className='table'>
+          <thead>
+            <tr>
+              <th className="text-center">No</th>
+              <th className="text-center">Project Name</th>
+              <th className="text-center">My Bid Price</th>
+              <th className="text-center">Returns (%)</th>
+              <th className="text-center">Payout</th>
+            </tr>
+          </thead>
+          <tbody className="tbod">
+            {tripList.map((reservation, index) => (
+              <tr key={reservation._id} className='h-8'>
+                <td className='border-slate-700 text-center'>
+                  {index + 1}
+                </td>
+                <td className='border-slate-700 text-center'>
+                  {reservation.listingTitle}
+                </td>
+                <td className='border-slate-700 text-center '>
+                  ksh. {reservation.totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </td>
+                <td className='border-slate-700 text-center '>
+                  {reservation.customerReturns}
+                </td>
+                <td className='border-slate-700 text-center'>
+                  {((reservation.customerReturns / 100) * reservation.totalPrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <Footer />
     </>

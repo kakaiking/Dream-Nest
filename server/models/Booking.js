@@ -14,11 +14,11 @@ const BookingSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Listing",
     },
-    startDate: {
+    customerEmail: {
       type: String,
       required: true,
     },
-    endDate: {
+    customerName: {
       type: String,
       required: true,
     },
@@ -26,6 +26,14 @@ const BookingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    listingTitle: {
+      type: String,
+      required: true,
+    },
+    customerReturns: {
+      type: Number,
+      required: true,
+    }
   },
   { timestamps: true }
 );

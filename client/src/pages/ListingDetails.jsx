@@ -12,10 +12,17 @@ import Footer from "../components/Footer"
 import { grey } from "@mui/material/colors";
 
 const ListingDetails = () => {
+  const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(true);
 
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
+  const [listingTitle, setListingTitle] = useState('')
+  const [customerEmail, setCustomerEmail] = useState("") 
+  const [hostEmail, setHostEmail] = useState("") 
+  const [customerName, setCustomerName] = useState("")
+  const [customerReturns, setCustomerReturns] = useState("")
+
 
   const getListingDetails = async () => {
     try {
@@ -31,6 +38,10 @@ const ListingDetails = () => {
       const data = await response.json();
       console.log("Received data:", data);
       setListing(data);
+      setListingTitle(data.title)
+      setCustomerReturns(data.returns)
+      setHostEmail(data.creator.email)
+      
 
       // Calculate price per share only if listing.target is available
       if (data && data.target) {
@@ -49,30 +60,31 @@ const ListingDetails = () => {
   }, [listingId]);
 
 
-
+  useEffect(() => {
+    setCustomerEmail(user.email);
+    setCustomerName(`${user.firstName} ${user.lastName}`);
+  }, []);
+  console.log(`${hostEmail}`)
+  
   /* BOOKING CALENDAR */
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+  // const [dateRange, setDateRange] = useState([
+  //   {
+  //     startDate: new Date(),
+  //     endDate: new Date(),
+  //     key: "selection",
+  //   },
+  // ]);
 
-  const handleSelect = (ranges) => {
-    // Update the selected date range when user makes a selection
-    setDateRange([ranges.selection]);
-  };
+  // const handleSelect = (ranges) => {
+  //   // Update the selected date range when user makes a selection
+  //   setDateRange([ranges.selection]);
+  // };
 
   const [pricePerShare, setPricePerShare] = useState(0);
   const totalShares = 100;
-  const remainingShares = 50;
+  // const remainingShares = 50;
 
   const [guestCount, setGuestCount] = useState(1);
-
-  // const start = new Date(dateRange[0].startDate);
-  // const end = new Date(dateRange[0].endDate);
-  // const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24); // Calculate the difference in day unit
 
   const [activeTab, setActiveTab] = useState('description');
 
@@ -92,9 +104,11 @@ const ListingDetails = () => {
         customerId,
         listingId,
         hostId: listing.creator._id,
-        startDate: dateRange[0].startDate.toDateString(),
-        endDate: dateRange[0].endDate.toDateString(),
+        customerEmail,
+        customerName,
         totalPrice: pricePerShare.toFixed(2) * guestCount,
+        listingTitle,
+        customerReturns
       }
 
       const response = await fetch("http://localhost:3001/bookings/create", {
@@ -189,7 +203,7 @@ const ListingDetails = () => {
                 </div>
 
                 <div className="igPage">
-                  <a href="">{listing.target}</a>
+                  <a href="">{listing.target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</a>
                 </div>
               </div>
             </div>
@@ -272,15 +286,6 @@ const ListingDetails = () => {
             >Description</button>
 
             {/* <div id="ProfileHeader" className="toggleHeaderProfile">
-              <h2>Updates</h2>
-            </div> */}
-            <button
-              id="ProductsHeader"
-              className={`header-btn toggleHeaderProducts ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
-              onClick={() => handleTabChange('updates')}
-            >Updates</button>
-
-            {/* <div id="ProfileHeader" className="toggleHeaderProfile">
               <h2>Host</h2>
             </div> */}
             <button
@@ -302,11 +307,12 @@ const ListingDetails = () => {
           <div className='bidInfo'>
             <h2>How Many Shares Of This Project Do You Want?</h2>
             <div className="date-range-calendar">
-              <h3>Target: {listing.target}</h3>
-              <h3>Total Shares: {totalShares}</h3>
-              <h3>Remaining Shares on Auction: {remainingShares}</h3>
-              <h3>Price per Share: {pricePerShare.toFixed(2)}</h3>
-
+              <h3>
+                {'Target: ' + listing.target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </h3>              
+              <h3 style={{ marginTop: '10px' }}>
+                Price per Share: {pricePerShare.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </h3>
               <div className="basic">
                 <div className="basic_count">
                   <RemoveCircleOutline
@@ -338,28 +344,27 @@ const ListingDetails = () => {
               <div className="totalPrice">
                 {guestCount > 1 ? (
                   <h2>
-                    {pricePerShare.toFixed(2)}/= x {guestCount} Shares
+                    {pricePerShare.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/= x {guestCount} Shares
                   </h2>
                 ) : (
                   <h2>
-                    {pricePerShare.toFixed(2)}/= x {guestCount} Share
+                    {pricePerShare.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/= x {guestCount} Share
                   </h2>
                 )}
-                <h2>Total Bid Price: ksh.{pricePerShare.toFixed(2) * guestCount}</h2>
+                <h2>
+                  Total Bid Price: ksh.{(pricePerShare * guestCount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </h2>              
               </div>
 
-              <button className="button" type="submit" onClick={handleSubmit}>
-                CONTACT
-              </button>
+
               <button className="button" type="submit" onClick={handleSubmit}>
                 PLACE BID
               </button>
+              <button className="button" >
+                CONTACT
+              </button>
             </div>
           </div>
-        </div>
-
-        <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
-          <p>updates</p>
         </div>
 
         <div className={`tab  ${activeTab === 'host' ? 'host' : 'hidden'}`}>

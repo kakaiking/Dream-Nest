@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
       unique: true,
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       default: '',      
       unique: true,
     },
@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    assetsUnderMnagement: {
+    assetsUnderManagement: {
       type: Number,
       default: '',
     },

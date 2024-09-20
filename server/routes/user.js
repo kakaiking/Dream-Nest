@@ -1,10 +1,13 @@
-const router = require("express").Router()
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const Booking = require("../models/Booking")
 const User = require("../models/User")
 const Listing = require("../models/Listing")
 
-// Route to Get One User from database by id
+// GET USER'S DETAILS
 router.get("/:userId/details", async (req, res) => {
   try {
     const { userId } = req.params;
@@ -17,9 +20,43 @@ router.get("/:userId/details", async (req, res) => {
     return res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
+
+// // Update user details including profile photo
+// router.put("/:userId/edit", upload.single('profileImage'), async (req, res) => {
+//   try {
+//     const userId = req.params.userId;
+//     const updateData = req.body;
+
+//     // Fetch the existing user first
+//     const existingUser = await User.findById(userId);
+
+//     if (!existingUser) {
+//       return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     // Merge the existing user data with the update data
+//     const mergedData = {
+//       ...existingUser.toObject(),
+//       ...updateData
+//     };
+
+//     // Use findByIdAndUpdate with the merged data
+//     const updatedUser = await User.findByIdAndUpdate(
+//       userId,
+//       mergedData,
+//       { new: true, runValidators: true }
+//     );
+
+//     res.json(updatedUser);
+//   } catch (error) {
+//     console.error('Error updating user:', error);
+//     res.status(500).json({ message: 'Error updating user profile' });
+//   }
+// });
+
 
 /* GET USER'S TRIP LIST */
 router.get("/:userId/trips", async (req, res) => {
@@ -45,11 +82,11 @@ router.patch("/:userId/:listingId", async (req, res) => {
     if (favoriteListing) {
       user.wishList = user.wishList.filter((item) => item._id.toString() !== listingId)
       await user.save()
-      res.status(200).json({ message: "Listing is removed from wish list", wishList: user.wishList})
+      res.status(200).json({ message: "Listing is removed from wish list", wishList: user.wishList })
     } else {
       user.wishList.push(listing)
       await user.save()
-      res.status(200).json({ message: "Listing is added to wish list", wishList: user.wishList})
+      res.status(200).json({ message: "Listing is added to wish list", wishList: user.wishList })
     }
   } catch (err) {
     console.log(err)
@@ -84,6 +121,7 @@ router.get("/:userId/reservations", async (req, res) => {
     res.status(404).json({ message: "Can not find reservations!", error: err.message })
   }
 })
+
 
 
 module.exports = router

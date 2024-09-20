@@ -11,6 +11,7 @@ const PropertyList = () => {
   const [loading, setLoading] = useState(true)
   const user = useSelector((state) => state.user)
   const propertyList = user?.propertyList;
+  console.log(user)
 
   const dispatch = useDispatch()
   const getPropertyList = async () => {
@@ -19,6 +20,7 @@ const PropertyList = () => {
         method: "GET"
       })
       const data = await response.json()
+      console.log(data)
       dispatch(setPropertyList(data))
       setLoading(false)
     } catch (err) {
@@ -33,11 +35,11 @@ const PropertyList = () => {
   return loading ? <Loader /> : (
     <>
       <Navbar />
-      <h1 className="title-list">Your Hosted Projects </h1>
+      <h1 className="title-list">Your Property List</h1>
       <div className="list">
-        {propertyList?.map(
-          ({
-            _id,
+      {propertyList.map(
+            ({
+              _id,
               creator,
               title,
               bidExpiry,
@@ -46,22 +48,24 @@ const PropertyList = () => {
               category,
               type,
               target,
+              highlightDesc,
               booking=false
-          }) => (
-            <ListingCard
-            listingId={_id}
-            title={title}
-            creator={creator}
-            bidExpiry={bidExpiry}
-            financialInstruments={financialInstruments}
-            returns={returns}
-            category={category}
-            type={type}
-            target={target}
-            booking={booking}
-            />
-          )
-        )}
+            }) => (
+              <ListingCard
+                listingId={_id}
+                title={title}
+                creator={creator}
+                bidExpiry={bidExpiry}
+                financialInstruments={financialInstruments}
+                returns={returns}
+                category={category}
+                type={type}
+                target={target}
+                highlightDesc = {highlightDesc}
+                booking={booking}
+              />
+            )
+          )}
       </div>
 
       <Footer />
