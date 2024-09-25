@@ -11,7 +11,7 @@ const WishList = () => {
   return (
     <>
       <Navbar />
-      <h1 className="title-list">Your Wish List</h1>
+      <h1 className="title-list" style={{marginLeft: "40vw "}}>Your Wish List</h1>
       <div className="list">
       {wishList?.map((item, index) => {
           console.log(`Rendering item ${index}:`, item);

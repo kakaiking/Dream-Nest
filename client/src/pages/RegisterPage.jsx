@@ -10,6 +10,13 @@ const RegisterPage = () => {
     password: "",
     confirmPassword: "",
     profileImage: null,
+    firmName: "",
+    yearStarted: "",
+    cmaLicenseNumber: "",
+    assetsUnderManagement: "",
+    physical: "",
+    website: "",
+    phoneNumber: "",
   });
 
   const handleChange = (e) => {
@@ -20,6 +27,7 @@ const RegisterPage = () => {
       [name]: name === "profileImage" ? files[0] : value,
     });
   };
+  console.log(formData)
 
   const [passwordMatch, setPasswordMatch] = useState(true)
 
@@ -120,6 +128,65 @@ const RegisterPage = () => {
               style={{ maxWidth: "80px" }}
             />
           )}
+
+          <input
+            placeholder="Firm Name"
+            name="firmName"
+            type="text"
+            value={formData.firmName}
+            onChange={handleChange}
+            required
+          />
+          <input
+            placeholder="Year Started"
+            name="yearStarted"
+            type="number"
+            value={formData.yearStarted}
+            onChange={handleChange}
+            required
+          />
+          <input
+            placeholder="CMA Lisence"
+            name="cmaLicenseNumber"
+            value={formData.cmaLicenseNumber}
+            onChange={handleChange}
+            type="number"
+            required
+          />
+          <input
+            placeholder="Website"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="Assets Under Management"
+            name="assetsUnderManagement"
+            value={formData.assetsUnderManagement}
+            onChange={handleChange}
+            type="number"
+          />
+          <input 
+            type="text" 
+            placeholder="Address (P.O BOX 25749-00603, Nairobi)"
+            name="physical"
+            value={formData.physical}
+            onChange={handleChange}
+          />
+          <input 
+            type="number" 
+            placeholder="Phone Number"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+          />
+          {/* <input
+            placeholder="Physical Address(P.O BOX 25749-00603, Nairobi)"
+            name="physicalAddress"
+            value={formData.physicalAddress}
+            onChange={handleChange}
+            type="text"
+          /> */}
           <button type="submit" disabled={!passwordMatch}>REGISTER</button>
         </form>
         <a href="/login">Already have an account? Log In Here</a>

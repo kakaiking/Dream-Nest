@@ -47,25 +47,25 @@ const CategoryPage = () => {
           ({
             _id,
             creator,
-            listingPhotoPaths,
-            city,
-            province,
-            country,
+            title,
+            bidExpiry,
+            financialInstruments,
+            returns,
             category,
             type,
-            price,
-            booking = false,
+            target,
+            booking=false
           }) => (
             <ListingCard
               listingId={_id}
               creator={creator}
-              listingPhotoPaths={listingPhotoPaths}
-              city={city}
-              province={province}
-              country={country}
+              title={title}
+              bidExpiry={bidExpiry}
+              financialInstruments={financialInstruments}
+              returns={returns}
               category={category}
               type={type}
-              price={price}
+              target={target}
               booking={booking}
             />
           )

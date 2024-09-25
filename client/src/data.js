@@ -10,6 +10,9 @@ import {
   FaKey,
 } from "react-icons/fa";
 import { FaHouseUser, FaKitchenSet } from "react-icons/fa6";
+import { IoBusiness, IoBarChart } from "react-icons/io5";
+import { GiPayMoney } from "react-icons/gi";
+import { FaDonate } from "react-icons/fa";
 import {
   BiSolidWasher,
   BiSolidDryer,
@@ -41,27 +44,21 @@ export const categories = [
     icon: <BiWorld />,
   },
   {
-    img: "assets/beach_cat.jpg",
+    img: "assets/tower3.jpg",
     label: "Fund Manager",
-    icon: <TbBeach />,
+    icon: <IoBarChart />,
     description: "This property is close to the beach!",
   },
   {
-    img: "assets/windmill_cat.webp",
+    img: "assets/tower2.jpg",
     label: "Enterprise",
-    icon: <GiWindmill />,
+    icon: <IoBusiness />,
     description: "This property is has windmills!",
   },
   {
-    img: "assets/modern_cat.webp",
-    label: "Crowd Fund",
-    icon: <MdOutlineVilla />,
-    description: "This property is modern!",
-  },
-  {
-    img: "assets/countryside_cat.webp",
+    img: "assets/unity.jpg",
     label: "Non-Profit",
-    icon: <TbMountain />,
+    icon: <FaDonate />,
     description: "This property is in the countryside!",
   },
 ];

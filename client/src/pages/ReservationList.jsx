@@ -44,7 +44,7 @@ const ReservationList = () => {
   ) : (
     <>
       <Navbar />
-      <h1 className="title-list">Your Projects' Bids</h1>
+      <h1 className="title-list" style={{marginLeft: "40vw "}}>Your Projects' Bids</h1>
       <div className="tableContent">
         <table className='table'>
           <thead>

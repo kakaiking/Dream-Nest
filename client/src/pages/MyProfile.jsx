@@ -134,7 +134,7 @@ const MyProfile = () => {
                                         </div>
 
                                         <div className="igPage">
-                                            <a href="">0726586111</a>
+                                            <a href="">{user.phoneNumber}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@ const MyProfile = () => {
                                             <h2 className="country">Been A Fund Manager Since</h2>
                                         </div>
                                         <div className="verifiedDatumData">
-                                            <h3 className="countryName">19/02/2001</h3>
+                                            <h3 className="countryName">{user.yearStarted}</h3>
                                         </div>
                                     </div>
                                     <div className="separator"></div>
@@ -208,7 +208,7 @@ const MyProfile = () => {
                                             <h2 className="country">CMA License Number</h2>
                                         </div>
                                         <div className="verifiedDatumData">
-                                            <h3 className="countryName">187</h3>
+                                            <h3 className="countryName">{user.cmaLicenseNumber}</h3>
                                         </div>
                                     </div>
                                     <div className="separator"></div>
@@ -218,7 +218,7 @@ const MyProfile = () => {
                                             <h2 className="country">LinkedIn Profile / Professional Website</h2>
                                         </div>
                                         <div className="verifiedDatumData">
-                                            <h3 className="countryName">muamana.ac.ke</h3>
+                                            <h3 className="countryName">{user.website}</h3>
                                         </div>
                                     </div>
                                     <div className="separator"></div>
@@ -239,17 +239,7 @@ const MyProfile = () => {
                                             <h2 className="country">Assets Under Management</h2>
                                         </div>
                                         <div className="verifiedDatumData">
-                                            <h3 className="countryName">2</h3>
-                                        </div>
-                                    </div>
-                                    <div className="separator"></div>
-
-                                    <div className="verifiedDatum">
-                                        <div className="verifiedDatumTitle">
-                                            <h2 className="country">Major Investment Tools Used</h2>
-                                        </div>
-                                        <div className="verifiedDatumData">
-                                            <h3 className="countryName">Securities, Commercial Papers</h3>
+                                            <h3 className="countryName">{user.assetsUnderManagement}</h3>
                                         </div>
                                     </div>
                                     <div className="separator"></div>
@@ -259,7 +249,7 @@ const MyProfile = () => {
                                             <h2 className="country">Physical Address</h2>
                                         </div>
                                         <div className="verifiedDatumData">
-                                            <h3 className="countryName">P.O BOX 25749-00603, Nairobi</h3>
+                                            <h3 className="countryName">{user.physical}</h3>
                                         </div>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
       unique: true,
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       default: '',      
       unique: true,
     },
@@ -29,18 +29,21 @@ const UserSchema = new mongoose.Schema(
       default: '',
     },
     yearStarted: {
-      type: Date,
+      type: Number,
       default: '',
     },
-    cmaCertified: {
-      type: String,
+    cmaLicenseNumber: {
+      type: Number,
       default: '',
     },
     assetsUnderManagement: {
       type: Number,
+    },
+    physical: {
+      type: String,
       default: '',
     },
-    physicalAddress: {
+    website: {
       type: String,
       default: '',
     },

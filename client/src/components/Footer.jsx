@@ -1,5 +1,7 @@
 import "../styles/Footer.scss"
 import { LocationOn, LocalPhone, Email } from "@mui/icons-material"
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -10,7 +12,7 @@ const Footer = () => {
       <div className="footer_center">
         <h3>Useful Links</h3>
         <ul>
-          <li>About Us</li>
+          <li><Link to="/faq">Frequently Asked Questions</Link></li>
           <li>Terms and Conditions</li>
           <li>Return and Refund Policy</li>
         </ul>
@@ -20,7 +22,7 @@ const Footer = () => {
         <h3>Contact</h3>
         <div className="footer_right_info">
           <LocalPhone />
-          <p>+1 234 567 890</p>
+          <p>+254 704 551 241</p>
         </div>
         <div className="footer_right_info">
           <Email />

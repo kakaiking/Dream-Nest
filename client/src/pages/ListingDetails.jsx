@@ -18,8 +18,8 @@ const ListingDetails = () => {
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
   const [listingTitle, setListingTitle] = useState('')
-  const [customerEmail, setCustomerEmail] = useState("") 
-  const [hostEmail, setHostEmail] = useState("") 
+  const [customerEmail, setCustomerEmail] = useState("")
+  const [hostEmail, setHostEmail] = useState("")
   const [customerName, setCustomerName] = useState("")
   const [customerReturns, setCustomerReturns] = useState("")
 
@@ -41,7 +41,7 @@ const ListingDetails = () => {
       setListingTitle(data.title)
       setCustomerReturns(data.returns)
       setHostEmail(data.creator.email)
-      
+
 
       // Calculate price per share only if listing.target is available
       if (data && data.target) {
@@ -64,8 +64,7 @@ const ListingDetails = () => {
     setCustomerEmail(user.email);
     setCustomerName(`${user.firstName} ${user.lastName}`);
   }, []);
-  console.log(`${hostEmail}`)
-  
+
   /* BOOKING CALENDAR */
   // const [dateRange, setDateRange] = useState([
   //   {
@@ -251,7 +250,7 @@ const ListingDetails = () => {
                 </div>
 
                 <div className="igPage">
-                  <a href="">{listing.creator.firstName} {listing.creator.lastName}</a>
+                  <a href="">{listing.creator.firmName}</a>
                 </div>
               </div>
             </div>
@@ -265,11 +264,16 @@ const ListingDetails = () => {
           <div></div>
         </div>
 
-        <h2>
-          Earn upto {listing.returns}% from {listing.financialInstruments}<br />
-          {" "}
-        </h2>
-        <h4>Bid payout dates: {listing.paymentDates}</h4>
+        {listing.category != "Non-Profit" && (
+          <>
+            <h2>
+              Earn up to {listing.returns}% from {listing.financialInstruments}
+              <br />
+            </h2>
+            <h4>Bid payout dates: {listing.paymentDates}</h4>
+          </>
+        )}
+        <h4>{listing.financialInstruments}</h4>
         <h4> {listing.type}</h4>
         <h4>Status: {timeLeft}</h4>
 
@@ -309,7 +313,7 @@ const ListingDetails = () => {
             <div className="date-range-calendar">
               <h3>
                 {'Target: ' + listing.target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </h3>              
+              </h3>
               <h3 style={{ marginTop: '10px' }}>
                 Price per Share: {pricePerShare.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </h3>
@@ -353,15 +357,12 @@ const ListingDetails = () => {
                 )}
                 <h2>
                   Total Bid Price: ksh.{(pricePerShare * guestCount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                </h2>              
+                </h2>
               </div>
 
 
               <button className="button" type="submit" onClick={handleSubmit}>
                 PLACE BID
-              </button>
-              <button className="button" >
-                CONTACT
               </button>
             </div>
           </div>
@@ -394,7 +395,7 @@ const ListingDetails = () => {
                       <h2 className="country">Been A Fund Manager Since</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">19/02/2001</h3>
+                      <h3 className="countryName">{listing.creator.yearStarted}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
@@ -404,7 +405,7 @@ const ListingDetails = () => {
                       <h2 className="country">CMA License Number</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">187</h3>
+                      <h3 className="countryName">{listing.creator.cmaLicenseNumber}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
@@ -414,7 +415,7 @@ const ListingDetails = () => {
                       <h2 className="country">LinkedIn Profile / Professional Website</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">muamana.ac.ke</h3>
+                      <h3 className="countryName">{listing.creator.website}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
@@ -435,17 +436,7 @@ const ListingDetails = () => {
                       <h2 className="country">Assets Under Management</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">2</h3>
-                    </div>
-                  </div>
-                  <div className="separator"></div>
-
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Major Investment Tools Used</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">Securities, Commercial Papers</h3>
+                      <h3 className="countryName">{listing.creator.assetsUnderManagement}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>
@@ -455,7 +446,7 @@ const ListingDetails = () => {
                       <h2 className="country">Physical Address</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">P.O BOX 25749-00603, Nairobi</h3>
+                      <h3 className="countryName">{listing.creator.physical}</h3>
                     </div>
                   </div>
                 </div>

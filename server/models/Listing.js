@@ -15,7 +15,7 @@ const ListingSchema = new mongoose.Schema(
       required: true,
     },
     bidExpiry: {
-      type: String,
+      type: Date,
       required: true,
     },
     financialInstruments: {

@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   return (
     <div className="categories">
-      <h1>Explore Top Categories</h1>
-      <p style={{fontSize: "Large", marginTop: "20px"}}>
-      Unleash the potential of your funding projects with our dynamic platform! Whether you're 
-      a visionary creator or an enthusiastic supporter, dive into a world of opportunities where 
-      innovation meets impact. Join us and turn your ambitious ideas into reality, while making a 
-      difference together.
+      <h1>About Us?</h1>
+      <p style={{fontSize: "Larger", marginTop: "20px"}}>
+      Unleash the power of your funding projects with our empowering platform! Whether you're 
+      a Visionary Creator or an Enthusiastic Supporter, dive into a world of opportunities where 
+      innovation meets impact. 
       </p>
 
       <div className="categories_list">

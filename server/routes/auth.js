@@ -21,7 +21,7 @@ const upload = multer({ storage });
 router.post("/register", upload.single("profileImage"), async (req, res) => {
   try {
     /* Take all information from the form */
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, firmName, yearStarted, cmaLicenseNumber, assetsUnderManagement, physical, website, phoneNumber} = req.body;
 
     /* The uploaded file is available as req.file */
     const profileImage = req.file;
@@ -39,7 +39,7 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
       return res.status(409).json({ message: "User already exists!" });
     }
 
-    /* Hass the password */
+    /* Hash the password */
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -50,6 +50,13 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
       email,
       password: hashedPassword,
       profileImagePath,
+      firmName, 
+      yearStarted, 
+      cmaLicenseNumber, 
+      assetsUnderManagement, 
+      physical, 
+      website,
+      phoneNumber
     });
 
     /* Save the new User */

@@ -93,9 +93,8 @@ const CreateListing = () => {
             <div className="category-list">
               {categories?.slice(1, 5).map((item, index) => (
                 <div
-                  className={`category ${
-                    category === item.label ? "selected" : ""
-                  }`}
+                  className={`category ${category === item.label ? "selected" : ""
+                    }`}
                   key={index}
                   onClick={() => setCategory(item.label)}
                 >
@@ -125,8 +124,8 @@ const CreateListing = () => {
             <h3>Now, What Are Your Project's Details?</h3>
             <div className="full">
               <div className="location">
-              <p>What's Your Project Target?</p>
-              <input
+                <p>What's Your Project Target?</p>
+                <input
                   type="number"
                   placeholder="100,000"
                   name="target"
@@ -141,7 +140,7 @@ const CreateListing = () => {
               <div className="location">
                 <p>Bid Expiry (Date)</p>
                 <input
-                  type="text"
+                  type="date"
                   placeholder="13 Jun 2024"
                   name="bidExpiry"
                   value={formLocation.bidExpiry}
@@ -150,10 +149,11 @@ const CreateListing = () => {
                 />
               </div>
               <div className="location">
-                <p>Investment Options</p>
+                <p>Where Will This Money Be Used?</p>
                 <input
                   type="text"
-                  placeholder="Bonds, Stocks, Real Estate..."
+                  maxlength="17"
+                  placeholder="Stocks, Bonds, Building A Church..."
                   name="financialInstruments"
                   value={formLocation.financialInstruments}
                   onChange={handleChangeLocation}
@@ -164,10 +164,14 @@ const CreateListing = () => {
 
             <div className="half">
               <div className="location">
-                <p>Return (%)</p>
+                {/* <p>Return (%)</p> */}
+                <details>
+                  <summary><b>Returns On Investment (%)</b></summary>
+                  <p>If there are no returns for this listing, put ROI as 0</p>
+                </details>
                 <input
-                  type="text"
-                  placeholder="12%"
+                  type="number"
+                  placeholder="12"
                   name="returns"
                   value={formLocation.returns}
                   onChange={handleChangeLocation}
@@ -196,6 +200,7 @@ const CreateListing = () => {
                 type="text"
                 placeholder="Title"
                 name="title"
+                maxlength="21"
                 value={formDescription.title}
                 onChange={handleChangeDescription}
                 required
@@ -217,7 +222,7 @@ const CreateListing = () => {
                 value={formDescription.description}
                 onChange={handleChangeDescription}
                 required
-              /> 
+              />
             </div>
           </div>
 
