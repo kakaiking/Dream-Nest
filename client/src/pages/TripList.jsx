@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "../styles/List.scss";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
@@ -36,10 +36,22 @@ const TripList = () => {
     getTripList();
   }, []);
 
-  const filteredTripList = tripList.filter((trip) => {
-    if (filter === "all") return true;
-    return trip.status === filter;
-  });
+  const filteredTripList = useMemo(() => {
+    return tripList.filter((trip) => {
+      if (filter === "all") return true;
+      return trip.status === filter;
+    });
+  }, [tripList, filter]);
+
+  const totalPayout = useMemo(() => {
+    return filteredTripList.reduce((sum, trip) => {
+      return sum + (trip.customerReturns / 100) * trip.totalPrice;
+    }, 0);
+  }, [filteredTripList]);
+
+  const totalBids = useMemo(() => {
+    return filteredTripList.reduce((sum, trip) => sum + trip.totalPrice, 0);
+  }, [filteredTripList]);
 
   return loading ? (
     <Loader />
@@ -69,6 +81,16 @@ const TripList = () => {
           Approved Bids
         </button>
       </div>
+
+      <div className="totals" style={{display: "flex", justifyContent: "space-between", margin: "20px 40px"}}>
+        <div>
+          <strong>Total Bids:</strong> ksh. {totalBids.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </div>
+        <div>
+          <strong>Total Payout:</strong> ksh. {totalPayout.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </div>
+      </div>
+
       <div className="tableContent">
         <table className='table'>
           <thead>

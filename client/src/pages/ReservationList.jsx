@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "../styles/List.scss";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
@@ -60,10 +60,22 @@ const ReservationList = () => {
     }
   };
 
-  const filteredReservationList = reservationList.filter((reservation) => {
-    if (filter === "all") return true;
-    return reservation.status === filter;
-  });
+  const filteredReservationList = useMemo(() => {
+    return reservationList.filter((reservation) => {
+      if (filter === "all") return true;
+      return reservation.status === filter;
+    });
+  }, [reservationList, filter]);
+
+  const totalPayout = useMemo(() => {
+    return filteredReservationList.reduce((sum, reservation) => {
+      return sum + (reservation.customerReturns / 100) * reservation.totalPrice;
+    }, 0);
+  }, [filteredReservationList]);
+
+  const totalBids = useMemo(() => {
+    return filteredReservationList.reduce((sum, reservation) => sum + reservation.totalPrice, 0);
+  }, [filteredReservationList]);
 
   return loading ? (
     <Loader />
@@ -76,23 +88,33 @@ const ReservationList = () => {
       <div className="filter-buttons" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
         <button
           onClick={() => setFilter("all")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
         >
           All Bids
         </button>
         <button
           onClick={() => setFilter("pending")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "pending" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "pending" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
         >
           Pending Bids
         </button>
         <button
           onClick={() => setFilter("approved")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "approved" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "approved" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
         >
           Approved Bids
         </button>
       </div>
+
+      <div className="totals" style={{display: "flex", justifyContent: "space-between", margin: "20px 40px"}}>
+        <div>
+          <strong>Total Bids:</strong> ksh. {totalBids.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </div>
+        <div>
+          <strong>Total Payout:</strong> ksh. {totalPayout.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </div>
+      </div>
+
       <div className="tableContent">
         <table className='table'>
           <thead>

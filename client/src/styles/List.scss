@@ -24,18 +24,22 @@
 }
 
 .filter-buttons button {
-  width: 120px;
+  width: 122px;
   height: 35px;
   margin-right: 30px;
   border: 1px solid black;
   border-radius: 7px;
   font-size: medium;
+  font-weight: bold;
+  color: $blue;
 }
 
 .filter-buttons button:hover{
   cursor: pointer;
+  background-color: #cdf;
 }
 
 .selected{
-  background-color: #eee;
+  background-color: #cdf;
+  color: black;
 }
