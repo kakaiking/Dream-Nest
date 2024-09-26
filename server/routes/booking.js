@@ -15,4 +15,23 @@ router.post("/create", async (req, res) => {
   }
 })
 
+/* EDIT BOOKING STATUS*/
+router.patch("/:id/status", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatedBooking = await Booking.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    if (!updatedBooking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+    res.status(200).json(updatedBooking);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Failed to update booking status", error: err.message });
+  }
+});
 module.exports = router

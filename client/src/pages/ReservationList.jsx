@@ -10,6 +10,7 @@ import "../styles/Reservations.scss"
 
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("all");
   const userId = useSelector((state) => state.user._id);
   const reservationList = useSelector((state) => state.user.reservationList);
 
@@ -27,7 +28,6 @@ const ReservationList = () => {
       const data = await response.json();
       dispatch(setReservationList(data));
       setLoading(false);
-      console.log(reservationList.customerName)
     } catch (err) {
       console.log("Fetch Reservation List failed!", err.message);
     }
@@ -37,14 +37,62 @@ const ReservationList = () => {
     getReservationList();
   }, []);
 
+  const handleApprove = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3001/bookings/${id}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "approved" }),
+      });
 
+      if (response.ok) {
+        const updatedReservationList = reservationList.map((reservation) =>
+          reservation._id === id ? { ...reservation, status: "approved" } : reservation
+        );
+        dispatch(setReservationList(updatedReservationList));
+      } else {
+        console.error("Failed to update booking status");
+      }
+    } catch (err) {
+      console.error("Error updating booking status:", err);
+    }
+  };
+
+  const filteredReservationList = reservationList.filter((reservation) => {
+    if (filter === "all") return true;
+    return reservation.status === filter;
+  });
 
   return loading ? (
     <Loader />
   ) : (
     <>
       <Navbar />
-      <h1 className="title-list" style={{marginLeft: "40vw "}}>Your Projects' Bids</h1>
+      <div style={{justifyContent: "center", width: "500px",textAlign: "center", margin: "20px auto"}}>
+        <h1 className="title-list" >Your Projects' Bids</h1>
+      </div>
+      <div className="filter-buttons" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
+        <button
+          onClick={() => setFilter("all")}
+          className={`mx-2 px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+        >
+          All Bids
+        </button>
+        <button
+          onClick={() => setFilter("pending")}
+          className={`mx-2 px-4 py-2 rounded ${filter === "pending" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+        >
+          Pending Bids
+        </button>
+        <button
+          onClick={() => setFilter("approved")}
+          className={`mx-2 px-4 py-2 rounded ${filter === "approved" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+        >
+          Approved Bids
+        </button>
+      </div>
       <div className="tableContent">
         <table className='table'>
           <thead>
@@ -56,39 +104,47 @@ const ReservationList = () => {
               <th className="text-center">Bid Price</th>
               <th className="text-center">Returns (%)</th>
               <th className="text-center">Payout</th>
+              <th className="text-center">Status</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody className="tbod">
-            {reservationList.map((reservation, index) => (
+            {filteredReservationList.map((reservation, index) => (
               <tr key={reservation._id} className='h-8'>
+                <td className='border-slate-700 text-center'>{index + 1}</td>
+                <td className='border-slate-700 text-center'>{reservation.listingTitle}</td>
+                <td className='border-slate-700 text-center'>{reservation.customerName}</td>
+                <td className='border-slate-700 text-center'>{reservation.customerEmail}</td>
                 <td className='border-slate-700 text-center'>
-                  {index + 1}
-                </td>
-                <td className='border-slate-700 text-center'>
-                  {reservation.listingTitle}
-                </td>
-                <td className='border-slate-700 text-center'>
-                  {reservation.customerName}
-                </td>
-                <td className='border-slate-700 text-center '>
-                  {reservation.customerEmail}
-                </td>
-                <td className='border-slate-700 text-center '>
                   ksh. {reservation.totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </td>
-                <td className='border-slate-700 text-center '>
-                  {reservation.customerReturns}
-                </td>
+                <td className='border-slate-700 text-center'>{reservation.customerReturns}</td>
                 <td className='border-slate-700 text-center'>
                   {((reservation.customerReturns / 100) * reservation.totalPrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </td>
-
+                <td className='border-slate-700 text-center'>{reservation.status || 'pending'}</td>
+                <td className='border-slate-700 text-center'>
+                  {(!reservation.status || reservation.status === 'pending') ? (
+                    <button
+                      onClick={() => handleApprove(reservation._id)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Approve
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-gray-400 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed"
+                    >
+                      Approved
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
       <Footer />
     </>
   );

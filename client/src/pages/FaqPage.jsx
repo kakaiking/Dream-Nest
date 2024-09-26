@@ -7,7 +7,9 @@ const FaqPage = () => {
   return (
     <div>
       <Navbar />
-      <h2 style={{marginLeft: "20vw", marginTop: "30px"}}>Frequently Asked Questions: </h2>
+      <div style={{justifyContent: "center", width: "500px",textAlign: "center", margin: "20px auto"}}>
+        <h2 >Frequently Asked Questions: </h2>
+      </div>
       <div className="faq">
       
         <Accordion />
