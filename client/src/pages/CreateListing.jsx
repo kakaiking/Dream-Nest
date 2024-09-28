@@ -6,6 +6,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer"
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import '../styles/QuillEditor.scss';
+
+
+
+
 
 const CreateListing = () => {
   const [category, setCategory] = useState("");
@@ -40,6 +47,13 @@ const CreateListing = () => {
     setFormDescription({
       ...formDescription,
       [name]: value,
+    });
+  };
+
+  const handleChangeRichText = (content) => {
+    setFormDescription({
+      ...formDescription,
+      description: content,
     });
   };
 
@@ -79,6 +93,26 @@ const CreateListing = () => {
       console.log("Publish Listing failed", err.message);
     }
   };
+
+  const modules = {
+    toolbar: [
+      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+      [{ 'size': ['small', 'normal', 'large', 'huge'] }],  // Add this line
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' },
+      { 'indent': '-1' }, { 'indent': '+1' }],
+      ['link', 'image'],
+      ['clean']
+    ],
+  };
+
+  const formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ];
+
   return (
     <>
       <Navbar />
@@ -215,13 +249,11 @@ const CreateListing = () => {
                 required
               />
               <p>Indepth Description of How You Intend To Use The Funds Given To Achieve Your Goals</p>
-              <textarea
-                type="text"
-                placeholder="Description"
-                name="description"
+              <ReactQuill
                 value={formDescription.description}
-                onChange={handleChangeDescription}
-                required
+                onChange={handleChangeRichText}
+                modules={modules}
+                formats={formats}
               />
             </div>
           </div>

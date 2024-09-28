@@ -76,7 +76,7 @@ const ListingCard = ({
           <p>{type}</p>
           <p>
             <span>
-              Target: <span style={{ color: '#c33764' }}>{target}</span>
+              Target: <span style={{ color: '#c33764' }}>{target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
             </span>          </p>
         </>
       ) : (

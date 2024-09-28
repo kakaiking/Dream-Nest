@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import Footer from "../components/Footer"
 import { grey } from "@mui/material/colors";
 
+import DOMPurify from 'dompurify';
+
 const ListingDetails = () => {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(true);
@@ -80,7 +82,7 @@ const ListingDetails = () => {
   // };
 
   const [pricePerShare, setPricePerShare] = useState(0);
-  const totalShares = 100;
+  const totalShares = 500;
   // const remainingShares = 50;
 
   const [guestCount, setGuestCount] = useState(1);
@@ -305,7 +307,7 @@ const ListingDetails = () => {
         <div className={`tab ${activeTab === 'description' ? 'description' : 'hidden'}`}>
           <div className='descriptionText'>
             <h3>Description</h3>
-            <p>{listing.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(listing.description) }} />
           </div>
 
           <div className='bidInfo'>

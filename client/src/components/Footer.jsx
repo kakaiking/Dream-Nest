@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer_center">
         <h3>Useful Links</h3>
         <ul>
-          <li><Link to="/faq">Frequently Asked Questions</Link></li>
+          <li><Link to="/faq">FAQ's</Link></li>
           <li>Terms and Conditions</li>
           <li>Return and Refund Policy</li>
         </ul>

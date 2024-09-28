@@ -88,19 +88,19 @@ const ReservationList = () => {
       <div className="filter-buttons" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
         <button
           onClick={() => setFilter("all")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white selectedz" : "bg-gray-200"}`}
         >
           All Bids
         </button>
         <button
           onClick={() => setFilter("pending")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "pending" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "pending" ? "bg-blue-500 text-white selectedz" : "bg-gray-200"}`}
         >
           Pending Bids
         </button>
         <button
           onClick={() => setFilter("approved")}
-          className={`mx-2 px-4 py-2 rounded ${filter === "approved" ? "bg-blue-500 text-white selected" : "bg-gray-200"}`}
+          className={`mx-2 px-4 py-2 rounded ${filter === "approved" ? "bg-blue-500 text-white selectedz" : "bg-gray-200"}`}
         >
           Approved Bids
         </button>
