@@ -52,7 +52,9 @@ const ListingDetails = () => {
 
       setLoading(false);
     } catch (err) {
+
       console.error("Fetch Listing Details Failed", err);
+      navigate(`/`)
       setLoading(false);
     }
   };
@@ -236,7 +238,11 @@ const ListingDetails = () => {
                 </div>
 
                 <div className="igPage">
-                  <a href="">{listing.bidExpiry}</a>
+                  <a href="">{new Date(listing.bidExpiry).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                  })}</a>
                 </div>
               </div>
             </div>
@@ -438,7 +444,7 @@ const ListingDetails = () => {
                       <h2 className="country">Assets Under Management</h2>
                     </div>
                     <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.assetsUnderManagement}</h3>
+                      <h3 className="countryName">{listing.creator.assetsUnderManagement.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                     </div>
                   </div>
                   <div className="separator"></div>

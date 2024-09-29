@@ -80,12 +80,12 @@ const Navbar = () => {
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
-            <Link to={`/${user._id}/details`}>My Profile</Link>
-            <Link to={`/${user._id}/wishList`}>Wish List</Link>
             <Link to={`/${user._id}/trips`}>My Bids</Link>
+            <Link to={`/${user._id}/reservations`}>My Project Updates</Link>
             <Link to={`/${user._id}/properties`}>My Hosted Projects</Link>
-            <Link to={`/${user._id}/reservations`}>My Projects' Bids</Link>
-            <Link to="/create-listing">Host A Project</Link>
+            <Link to={`/${user._id}/wishList`}>Wish List</Link>
+            <Link to={`/${user._id}/details`}>My Profile</Link>
+            <Link to="/create-listing">Host A Project</Link> <hr />
 
             <Link
               to="/login"

@@ -199,8 +199,8 @@ const CreateListing = () => {
             <div className="half">
               <div className="location">
                 {/* <p>Return (%)</p> */}
-                <details>
-                  <summary><b>Returns On Investment (%)</b></summary>
+                <details >
+                  <summary style={{cursor: "pointer"}}><b>Returns On Investment (%)</b></summary>
                   <p>If there are no returns for this listing, put ROI as 0</p>
                 </details>
                 <input
