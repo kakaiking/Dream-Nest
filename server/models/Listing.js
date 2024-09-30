@@ -46,6 +46,10 @@ const ListingSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    updates: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Update',
+    }],
   },
   { timestamps: true}
 )

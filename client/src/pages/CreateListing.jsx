@@ -96,8 +96,7 @@ const CreateListing = () => {
 
   const modules = {
     toolbar: [
-      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-      [{ 'size': ['small', 'normal', 'large', 'huge'] }],  // Add this line
+      [{ 'header': '1' }, { 'header': '2' }],  // Add this line
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' },
       { 'indent': '-1' }, { 'indent': '+1' }],
@@ -107,7 +106,7 @@ const CreateListing = () => {
   };
 
   const formats = [
-    'header', 'font', 'size',
+    'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
     'link', 'image'
@@ -254,6 +253,7 @@ const CreateListing = () => {
                 onChange={handleChangeRichText}
                 modules={modules}
                 formats={formats}
+                style={{height: "300px"}}
               />
             </div>
           </div>

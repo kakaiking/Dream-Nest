@@ -13,6 +13,8 @@ import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 import MyProfile from "./pages/MyProfile";
 import FaqPage from "./pages/FaqPage";
+import CreateUpdate from "./components/CreateUpdate";
+import UpdateDetails from "./components/UpdateDetails";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetails />} />
+          <Route path="/update/:updateId" element={<UpdateDetails />} />
+          <Route path="/create-update/:listingId" element={<CreateUpdate />} />
           <Route path="/properties/category/:category" element={<CategoryPage />} />
           <Route path="/properties/search/:search" element={<SearchPage />} />
           <Route path="/:userId/trips" element={<TripList />} />

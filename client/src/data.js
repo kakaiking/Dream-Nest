@@ -13,6 +13,9 @@ import { FaHouseUser, FaKitchenSet } from "react-icons/fa6";
 import { IoBusiness, IoBarChart } from "react-icons/io5";
 import { GiPayMoney } from "react-icons/gi";
 import { FaDonate } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { GiCheckMark } from "react-icons/gi";
+
 import {
   BiSolidWasher,
   BiSolidDryer,
@@ -67,13 +70,14 @@ export const types = [
   {
     name: "CMA Certified",
     description: "I have been approved by the Capital Markets Authority to manage funds and have no problem availing it when needed",
-    icon: <FaHouseUser />,
+    icon: <GiCheckMark />,
   },
   {
     name: "Not CMA Certified",
     description:
       "I have NOT been approved by the Capital Markets Authority to manage funds and all my management is based on experience",
-    icon: <BsFillDoorOpenFill />,
+    icon: <RxCross2 />
+    ,
   },
 
 ];

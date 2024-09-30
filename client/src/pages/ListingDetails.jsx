@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
-import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
+import { RemoveCircleOutline, AddCircleOutline, AddCircle } from "@mui/icons-material";
 
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -24,6 +24,7 @@ const ListingDetails = () => {
   const [hostEmail, setHostEmail] = useState("")
   const [customerName, setCustomerName] = useState("")
   const [customerReturns, setCustomerReturns] = useState("")
+  const [updates, setUpdates] = useState([]);
 
 
   const getListingDetails = async () => {
@@ -173,6 +174,25 @@ const ListingDetails = () => {
 
   }, [listing?.bidExpiry]);
 
+  useEffect(() => {
+    const fetchUpdates = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/updates/listing/${listingId}`);
+        const data = await response.json();
+        setUpdates(data);
+      } catch (err) {
+        console.error("Failed to fetch updates", err);
+      }
+    };
+
+    fetchUpdates();
+  }, [listingId]);
+
+  const handleCreateUpdate = () => {
+    navigate(`/create-update/${listingId}`);
+  };
+
+
   return loading ? (
     <Loader />
   ) : (
@@ -296,15 +316,15 @@ const ListingDetails = () => {
               className={`header-btn toggleHeaderProducts ${activeTab === 'description' ? 'toggleHeaderBorder' : ''}`}
               onClick={() => handleTabChange('description')}
             >Description</button>
-
-            {/* <div id="ProfileHeader" className="toggleHeaderProfile">
-              <h2>Host</h2>
-            </div> */}
             <button
               id="ProductsHeader"
               className={`header-btn toggleHeaderProducts ${activeTab === 'host' ? 'toggleHeaderBorder' : ''}`}
               onClick={() => handleTabChange('host')}
             >Host</button>
+            <button
+              className={`header-btn ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
+              onClick={() => handleTabChange('updates')}
+            >Updates</button>
           </div>
           <div className="toggleBar"></div>
         </section>
@@ -461,6 +481,21 @@ const ListingDetails = () => {
               </div>
             </div>
           </section>
+        </div>
+
+        <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
+          <h2>Project Updates</h2>
+          {updates.map((update) => (
+            <div key={update._id} className="update-item" onClick={() => navigate(`/update/${update._id}`)} style={{display: "flex", flexDirection: "row", height: "70px", width: "70%",margin: "10px auto", backgroundColor: "#eee", cursor: "pointer"}}>
+              <div className="update-icon" style={{ backgroundColor: `rgba(0, 0, 0, 0.5)`, width: "50px", height: "50px"}}></div>
+              <h3>{update.title}</h3>
+            </div>
+          ))}
+          {listing.creator._id === user._id && (
+            <button className="floating-add-btn" onClick={handleCreateUpdate}>
+              <AddCircle />
+            </button>
+          )}
         </div>
       </div>
 
