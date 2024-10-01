@@ -174,6 +174,33 @@ const ListingDetails = () => {
 
   }, [listing?.bidExpiry]);
 
+  const getYouTubeVideoId = (url) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const YouTubeThumbnail = ({ videoLink }) => {
+    const videoId = getYouTubeVideoId(videoLink);
+    const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/0.jpg` : null;
+
+    if (!thumbnailUrl) {
+      return <div className="update-iconz"></div>;
+    }
+
+    return (
+      <img
+        src={thumbnailUrl}
+        alt="Video thumbnail"
+        className="update-iconz"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = '/path/to/fallback/image.jpg'; // Replace with your fallback image path
+        }}
+      />
+    );
+  };
+
   useEffect(() => {
     const fetchUpdates = async () => {
       try {
@@ -191,6 +218,7 @@ const ListingDetails = () => {
   const handleCreateUpdate = () => {
     navigate(`/create-update/${listingId}`);
   };
+
 
 
   return loading ? (
@@ -322,7 +350,7 @@ const ListingDetails = () => {
               onClick={() => handleTabChange('host')}
             >Host</button>
             <button
-              className={`header-btn ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
+              className={`header-btn toggleHeaderProducts ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
               onClick={() => handleTabChange('updates')}
             >Updates</button>
           </div>
@@ -482,13 +510,24 @@ const ListingDetails = () => {
             </div>
           </section>
         </div>
-
         <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
           <h2>Project Updates</h2>
           {updates.map((update) => (
-            <div key={update._id} className="update-item" onClick={() => navigate(`/update/${update._id}`)} style={{display: "flex", flexDirection: "row", height: "70px", width: "70%",margin: "10px auto", backgroundColor: "#eee", cursor: "pointer"}}>
-              <div className="update-icon" style={{ backgroundColor: `rgba(0, 0, 0, 0.5)`, width: "50px", height: "50px"}}></div>
-              <h3>{update.title}</h3>
+            <div key={update._id} className="update-item" onClick={() => navigate(`/update/${update._id}`)}>
+              <div className="update-icon">
+                <YouTubeThumbnail videoLink={update.videoLink} />
+              </div>
+              <div className="update-description">
+                <div className="update-descriptionTitle">
+                  <h3>{update.title}:</h3>
+                </div>
+                <div className="update-descriptionP">
+                  <p>
+                    {update.description.split(' ').slice(0, 10).join(' ')}
+                    {update.description.split(' ').length > 10 ? '...' : ''}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
           {listing.creator._id === user._id && (

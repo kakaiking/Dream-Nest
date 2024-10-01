@@ -93,8 +93,12 @@
 
     .bidInfo{
       width: 40%;
+      height: 600px;
       padding: 20px;
-      // background-color: green;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
+
     }
 
     @include lg {
@@ -149,10 +153,6 @@
       }
     }
   }
-}
-
-.updates{
-  background-color: #fff;
 }
 
   .basic {
@@ -1024,3 +1024,72 @@ border: 2px solid black;
 }
 
 
+.updates{
+	// background-color : rgba(10,100,100,0.1);
+  padding: 10px;
+  border-radius: 10px;
+  height: auto;
+}
+
+.update-item{
+  display: flex; 
+  flex-direction: row; 
+  height: 120px;
+  width: 70%;
+  margin: 10px auto; 
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+
+}
+
+.update-item:hover{
+  border: 1px solid #000;
+}
+.update-icon{
+  width: 20%;
+  height: 100%;
+  // background-color: green;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+}
+
+.update-iconz {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #f0f0f0; /* fallback color */
+}
+
+
+.update-description{
+  width: 80%;
+  // background-color: orange;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-descriptionTitle{
+  height: 50%;
+  // background-color: blue;
+  padding: 2%;
+}
+
+.update-descriptionTitle h3{
+  // background-color: blue;
+  margin-top: 10px;
+}
+
+.update-descriptionP{
+  height: 50%;
+  // background-color: green;
+  padding-left: 2%;  
+}
+
+.update-descriptionP p{
+  margin-bottom: 10px;
+}

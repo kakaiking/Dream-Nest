@@ -185,7 +185,7 @@ const CreateListing = () => {
                 <p>Where Will This Money Be Used?</p>
                 <input
                   type="text"
-                  maxlength="17"
+                  maxlength="21"
                   placeholder="Stocks, Bonds, Building A Church..."
                   name="financialInstruments"
                   value={formLocation.financialInstruments}

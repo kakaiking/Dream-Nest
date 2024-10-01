@@ -27,7 +27,6 @@ const ListingCard = ({
   customerReturns,
   booking,
 }) => {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -50,7 +49,23 @@ const ListingCard = ({
       );
       const data = await response.json();
       dispatch(setWishList(data.wishList));
-    } else { return }
+    } else {
+      return;
+    }
+  };
+
+  // Function to determine the background gradient based on category
+  const getBackgroundGradient = () => {
+    switch (category) {
+      case "Fund Manager":
+        return "linear-gradient(330deg, #c33764, #1d2671)";
+      case "Enterprise":
+        return "linear-gradient(330deg, #43cea2, #185a9d)";
+      case "Non-Profit":
+        return "linear-gradient(330deg, #ff9966, #ff5e62)";
+      default:
+        return "linear-gradient(330deg, #c33764, #1d2671)"; // Default gradient
+    }
   };
 
   return (
@@ -61,32 +76,36 @@ const ListingCard = ({
       }}
     >
       <div className="slider-container">
-        <div className="slider" >
-          {/* <img src="../assets/target.jpg" alt="project pic`" />  */}
+        <div className="slider" style={{ background: getBackgroundGradient() }}>
+          {/* <img src="../assets/target.jpg" alt="project pic`" /> */}
         </div>
       </div>
-
-
 
       {!booking ? (
         <>
           <h2>{title}</h2>
-          <h3> {returns}%,  {financialInstruments} </h3>
+          <h3>
+            {returns}%, {financialInstruments}
+          </h3>
           <p>{category}</p>
           <p>{type}</p>
           <p>
             <span>
-              Target: <span style={{ color: '#c33764' }}>{target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-            </span>          </p>
+              Target:{" "}
+              <span style={{ color: "#c33764" }}>
+                {target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
+            </span>
+          </p>
         </>
       ) : (
         <>
           <h2>{listingTitle}</h2>
           <p>
-            {customerName} / {customerEmail}  
+            {customerName} / {customerEmail}
           </p>
           <p>
-            Bid: <span>Ksh{totalPrice}</span> 
+            Bid: <span>Ksh{totalPrice}</span>
           </p>
         </>
       )}
