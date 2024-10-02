@@ -28,9 +28,21 @@ const UpdateDetails = () => {
     <>
       <Navbar />
       <div className="update-details">
-        <ReactPlayer url={update.videoLink} />
-        <h1>{update.title}</h1>
-        <p>{update.description}</p>
+        <div className="updateTitle" style={{ textAlign: "center", margin: "20px auto" }}>
+          <h1>{update.title}</h1>
+        </div>
+        <div className="vid" >
+          <ReactPlayer url={`${update.videoLink}?modestbranding=1&showinfo=0&rel=0`} style={{ margin: "30px auto " }} />
+        </div>
+        <div className="updateDeets" style={{width: "90%", height: "auto", backgroundColor: '#fff', margin: '0 auto', borderRadius: '10px', padding: '10px'}}>
+          <div className="desctitle" style={{ width: '65%', margin: "0 auto 20px auto", textAlign: "center" }}>
+            <h3><u> Description:</u></h3>
+          </div>
+          <div className="updateP" style={{ width: '85%', height: "500px", margin: "0 auto", textAlign: "center" }}>
+            <p>{update.description}</p>
+          </div>
+        </div>
+
       </div>
       <Footer />
     </>

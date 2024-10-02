@@ -360,7 +360,7 @@ const ListingDetails = () => {
 
         <div className={`tab ${activeTab === 'description' ? 'description' : 'hidden'}`}>
           <div className='descriptionText'>
-            <h3>Description</h3>
+            <h2>Description</h2>
             <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(listing.description) }} />
           </div>
 
@@ -511,7 +511,7 @@ const ListingDetails = () => {
           </section>
         </div>
         <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
-          <h2>Project Updates</h2>
+          <h2>Project Updates:</h2>
           {updates.map((update) => (
             <div key={update._id} className="update-item" onClick={() => navigate(`/update/${update._id}`)}>
               <div className="update-icon">
@@ -531,8 +531,8 @@ const ListingDetails = () => {
             </div>
           ))}
           {listing.creator._id === user._id && (
-            <button className="floating-add-btn" onClick={handleCreateUpdate}>
-              <AddCircle />
+            <button className="floating-add-btn" onClick={handleCreateUpdate} style={{justifyContent: "center", textAlign: "center", padding: '1%', fontSize: "larger", fontWeight: 'bold', marginTop: "30px"}}>
+              Add A New Update<AddCircle />
             </button>
           )}
         </div>

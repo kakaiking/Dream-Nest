@@ -98,6 +98,7 @@
       background-color: #fff;
       border-radius: 10px;
       box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
+      margin-top: 30px;
 
     }
 
@@ -1036,7 +1037,7 @@ border: 2px solid black;
   flex-direction: row; 
   height: 120px;
   width: 70%;
-  margin: 10px auto; 
+  margin: 30px auto; 
   background-color: #fff;
   cursor: pointer;
   box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
@@ -1045,8 +1046,7 @@ border: 2px solid black;
 }
 
 .update-item:hover{
-  border: 1px solid #000;
-}
+  box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.5);}
 .update-icon{
   width: 20%;
   height: 100%;
@@ -1092,4 +1092,13 @@ border: 2px solid black;
 
 .update-descriptionP p{
   margin-bottom: 10px;
+}
+
+.floating-add-btn{
+  position: absolute;
+  right: 130px;
+}
+.floating-add-btn:hover{
+  cursor: pointer;
+  box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
 }
