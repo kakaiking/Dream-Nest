@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const path = require("path");
 
 const authRoutes = require("./routes/auth.js")
 const listingRoutes = require("./routes/listing.js")
@@ -10,10 +11,11 @@ const bookingRoutes = require("./routes/booking.js")
 const userRoutes = require("./routes/user.js")
 const updateRoutes = require("./routes/update.js");
 
-
-
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static("public"));
 
 /* ROUTES */
@@ -22,7 +24,6 @@ app.use("/properties", listingRoutes)
 app.use("/bookings", bookingRoutes)
 app.use("/users", userRoutes)
 app.use("/updates", updateRoutes)
-
 
 /* MONGOOSE SETUP */
 const PORT = 3001;
@@ -36,3 +37,7 @@ mongoose
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })
   .catch((err) => console.log(`${err} did not connect`));
+
+
+
+

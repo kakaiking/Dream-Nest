@@ -523,8 +523,8 @@ const ListingDetails = () => {
                 </div>
                 <div className="update-descriptionP">
                   <p>
-                    {update.description.split(' ').slice(0, 10).join(' ')}
-                    {update.description.split(' ').length > 10 ? '...' : ''}
+                    {update.description.split(' ').slice(0, 11).join(' ')}
+                    {update.description.split(' ').length > 11 ? '...' : ''}
                   </p>
                 </div>
               </div>

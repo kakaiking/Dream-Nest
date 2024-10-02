@@ -2,12 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Update = require('../models/Update');
 const Listing = require('../models/Listing');
-const User = require('../models/User');
 const authMiddleware = require('../middleware/auth');
+const multer = require('multer');
+const path = require('path');
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Create a new update
-router.post("/create", authMiddleware, async (req, res) => {
+router.post("/create", authMiddleware, upload.array('supportingDocuments', 5), async (req, res) => {
   try {
     const { listingId, title, description, videoLink } = req.body;
     const listing = await Listing.findById(listingId).populate("creator");
@@ -16,16 +27,22 @@ router.post("/create", authMiddleware, async (req, res) => {
       return res.status(404).json({ message: "Listing not found!" });
     }
 
-    // Check if the current user is the creator of the listing
     if (listing.creator._id.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: "You are not authorized to create updates for this listing." });
     }
+
+    const supportingDocuments = req.files.map(file => ({
+      fileName: file.originalname,
+      fileUrl: file.filename,  // Store only the filename
+      fileType: file.mimetype
+    }));
 
     const newUpdate = new Update({
       listing: listingId,
       title,
       description,
       videoLink,
+      supportingDocuments
     });
 
     const savedUpdate = await newUpdate.save();

@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { IoDocumentTextOutline } from "react-icons/io5";
+import '../styles/UpdateDetails.scss'
+
 
 const UpdateDetails = () => {
   const [update, setUpdate] = useState(null);
@@ -14,6 +17,7 @@ const UpdateDetails = () => {
         const response = await fetch(`http://localhost:3001/updates/${updateId}`);
         const data = await response.json();
         setUpdate(data);
+        console.log(data)
       } catch (err) {
         console.error("Failed to fetch update details", err);
       }
@@ -21,6 +25,27 @@ const UpdateDetails = () => {
 
     fetchUpdate();
   }, [updateId]);
+
+  const timeAgo = (timestamp) => {
+    const now = new Date();
+    const createdAt = new Date(timestamp);
+    const differenceInMilliseconds = now - createdAt;
+    
+    const differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
+    const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+    const differenceInHours = Math.floor(differenceInMinutes / 60);
+    const differenceInDays = Math.floor(differenceInHours / 24);
+  
+    if (differenceInHours < 24) {
+      if (differenceInMinutes < 60) {
+        return differenceInMinutes === 1 ? "1 minute ago" : `${differenceInMinutes} minutes ago`;
+      } else {
+        return differenceInHours === 1 ? "1 hour ago" : `${differenceInHours} hours ago`;
+      }
+    } else {
+      return differenceInDays === 1 ? "1 day ago" : `${differenceInDays} days ago`;
+    }
+  };
 
   if (!update) return <div>Loading...</div>;
 
@@ -31,18 +56,47 @@ const UpdateDetails = () => {
         <div className="updateTitle" style={{ textAlign: "center", margin: "20px auto" }}>
           <h1>{update.title}</h1>
         </div>
+
         <div className="vid" >
           <ReactPlayer url={`${update.videoLink}?modestbranding=1&showinfo=0&rel=0`} style={{ margin: "30px auto " }} />
         </div>
-        <div className="updateDeets" style={{width: "90%", height: "auto", backgroundColor: '#fff', margin: '0 auto', borderRadius: '10px', padding: '10px'}}>
+
+        <div className="updateDeets" style={{ width: "90%", height: "auto", backgroundColor: '#fff', margin: '0 auto', borderRadius: '10px', padding: '20px' }}>
           <div className="desctitle" style={{ width: '65%', margin: "0 auto 20px auto", textAlign: "center" }}>
-            <h3><u> Description:</u></h3>
+            <h3><u>Description:</u></h3>
+            <p>Created: {timeAgo(update.createdAt)}</p> {/* Here we use the timeAgo function */}
+
           </div>
-          <div className="updateP" style={{ width: '85%', height: "500px", margin: "0 auto", textAlign: "center" }}>
+
+          <div className="updateP" style={{ width: '85%', height: "auto", margin: "0 auto", textAlign: "center" }}>
             <p>{update.description}</p>
+          </div><br /><hr />
+
+
+          <div className="supportDocs">
+            <div className="supportTitle" style={{ width: '65%', margin: "0 auto 20px auto", textAlign: "center" }}>  
+              <h3><u>Supporting Documents:</u></h3>
+            </div>
+            {update.supportingDocuments && update.supportingDocuments.length > 0 ? (
+              <div className="doc-cards">
+                {update.supportingDocuments.map((doc, index) => (
+                  <div className="doc-card" key={index}>
+                    <a href={`http://localhost:3001/uploads/${doc.fileUrl}`} target="_blank" rel="noopener noreferrer">
+                      <div className="doc-icon">
+                      <IoDocumentTextOutline />
+                      </div>
+                      <div className="doc-name">
+                        {doc.fileName}
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>No supporting documents available.</p>
+            )}
           </div>
         </div>
-
       </div>
       <Footer />
     </>

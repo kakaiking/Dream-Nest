@@ -19,6 +19,11 @@ const UpdateSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    supportingDocuments: [{
+      fileName: String,
+      fileUrl: String,
+      fileType: String,
+    }],
   },
   { timestamps: true }
 );
