@@ -160,7 +160,7 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            placeholder="Assets Under Management"
+            placeholder="Assets Under Management (ksh)"
             name="assetsUnderManagement"
             value={formData.assetsUnderManagement}
             onChange={handleChange}

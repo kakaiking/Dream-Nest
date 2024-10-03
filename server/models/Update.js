@@ -24,6 +24,10 @@ const UpdateSchema = new mongoose.Schema(
       fileUrl: String,
       fileType: String,
     }],
+    comments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }]
   },
   { timestamps: true }
 );

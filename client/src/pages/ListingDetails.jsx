@@ -219,7 +219,11 @@ const ListingDetails = () => {
     navigate(`/create-update/${listingId}`);
   };
 
-
+  const stripHtmlTags = (html) => {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+  };
 
   return loading ? (
     <Loader />
@@ -523,16 +527,21 @@ const ListingDetails = () => {
                 </div>
                 <div className="update-descriptionP">
                   <p>
-                    {update.description.split(' ').slice(0, 11).join(' ')}
-                    {update.description.split(' ').length > 11 ? '...' : ''}
+                    {stripHtmlTags(update.description).split(' ').slice(0, 11).join(' ')}
+                    {stripHtmlTags(update.description).split(' ').length > 11 ? '...' : ''}
                   </p>
                 </div>
               </div>
             </div>
           ))}
           {listing.creator._id === user._id && (
-            <button className="floating-add-btn" onClick={handleCreateUpdate} style={{justifyContent: "center", textAlign: "center", padding: '1%', fontSize: "larger", fontWeight: 'bold', marginTop: "30px"}}>
-              Add A New Update<AddCircle />
+            <button
+              className="floating-add-btn"
+              onClick={handleCreateUpdate}
+              style={{ justifyContent: 'center', textAlign: 'center', padding: '1%', fontSize: 'larger', fontWeight: 'bold', marginTop: '30px' }}
+            >
+              Add A New Update
+              <AddCircle />
             </button>
           )}
         </div>
