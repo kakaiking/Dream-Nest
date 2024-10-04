@@ -70,9 +70,10 @@ const CommentSection = ({ updateId }) => {
   };
 
   return (
-    <div className="comment-section">
-      <h3>Comments</h3>
-      
+<>
+    <h3 style={{marginLeft: '30px', marginTop: '30px'}}>Comments</h3>
+
+    <div className="comment-sect"> 
       <div className="comments-list">
         {comments.map((comment) => (
           <div key={comment._id} className="comment">
@@ -119,16 +120,17 @@ const CommentSection = ({ updateId }) => {
           </div>
         ))}
       </div>
+    </div>
 
-      <form onSubmit={(e) => handleSubmitComment(e)}>
+    <form onSubmit={(e) => handleSubmitComment(e)}>
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Write a comment..."
+          placeholder="Write a comment and start a thread..."
         />
         <button type="submit">Post Comment</button>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -122,7 +122,9 @@ const UpdateDetails = () => {
         </div>
 
         <div className="comment-section">
-          <CommentSection updateId={updateId} />
+          <div className="comment-sectionn">
+            <CommentSection updateId={updateId} />
+          </div>
         </div>
       </div>
       <Footer />
