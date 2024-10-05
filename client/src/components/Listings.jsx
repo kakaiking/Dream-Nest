@@ -48,7 +48,7 @@ const Listings = () => {
             onClick={() => setSelectedCategory(category.label)}
           >
             <div className="category_icon">{category.icon}</div>
-            <p>{category.label}</p>
+            <p className="categoryP">{category.label}</p>
           </div>
         ))}
       </div>
@@ -57,35 +57,38 @@ const Listings = () => {
         <Loader />
       ) : (
         <div className="listings">
-          {listings.map(
-            ({
-              _id,
-              creator,
-              title,
-              bidExpiry,
-              financialInstruments,
-              returns,
-              category,
-              type,
-              target,
-              highlightDesc,
-              booking=false
-            }) => (
-              <ListingCard
-                listingId={_id}
-                title={title}
-                creator={creator}
-                bidExpiry={bidExpiry}
-                financialInstruments={financialInstruments}
-                returns={returns}
-                category={category}
-                type={type}
-                target={target}
-                highlightDesc = {highlightDesc}
-                booking={booking}
-              />
-            )
-          )}
+          
+
+            {listings.map(
+              ({
+                _id,
+                creator,
+                title,
+                bidExpiry,
+                financialInstruments,
+                returns,
+                category,
+                type,
+                target,
+                highlightDesc,
+                booking = false
+              }) => (
+                <ListingCard
+                  listingId={_id}
+                  title={title}
+                  creator={creator}
+                  bidExpiry={bidExpiry}
+                  financialInstruments={financialInstruments}
+                  returns={returns}
+                  category={category}
+                  type={type}
+                  target={target}
+                  highlightDesc={highlightDesc}
+                  booking={booking}
+                />
+              )
+            )}
+          
         </div>
       )}
     </>

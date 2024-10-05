@@ -1,13 +1,13 @@
 .comment-sect {
   margin-top: 2rem;
   background-color: #eee;
-  
+
   h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
 
-  
+
 
   .comments-list {
     .comment {
@@ -49,12 +49,26 @@
         .reply {
           border-left: 2px solid #e0e0e0;
           padding-left: 1rem;
-          margin-bottom: 1rem;
+          
         }
       }
 
-      button{
-        background-color: red;
+      button {
+        padding: 5px 10px;
+        background-color: #F8395A;
+        border: none;
+        font-size: large;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+        color: white;
+        border-radius: 10px;
+        width: 30%;
+        margin: 5px 10px 10px 0;
+      }
+
+      button:hover {
+        cursor: pointer;
       }
     }
   }
