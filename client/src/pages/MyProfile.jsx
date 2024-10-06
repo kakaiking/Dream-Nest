@@ -58,8 +58,7 @@ const MyProfile = () => {
             <Loader /> // Replace with your loading spinner or message
         ) : (
             <div>
-                <Navbar /> {/* Assuming you have a Navbar component */}
-                {/* <h1>My Profile</h1> */}
+                <Navbar /> 
 
                 {/* <!-- Shop Info --> */}
                 <section id="shopInfo">
@@ -143,35 +142,7 @@ const MyProfile = () => {
                     </div>
                 </section>
 
-                {/* <!-- Toggle Shop nav --> */}
-                {/* <section id="toggleShops">
-                    <div className="toggleBtnss">
-                        <div id="ProductsHeader" className="toggleHeaderProducts toggleHeaderBorder">
-              <h2>Description</h2>
-            </div>
-                        <button
-                            id="ProductsHeader"
-                            className={`header-btn toggleHeaderProductss ${activeTab === 'one' ? 'toggleHeaderBorders' : ''}`}
-                            onClick={() => handleTabChange('one')}
-                        >1</button>
-
-                        <div id="ProfileHeader" className="toggleHeaderProfile">
-              <h2>Updates</h2>
-            </div>
-                        <button
-                            id="ProductsHeader"
-                            className={`header-btn toggleHeaderProductss ${activeTab === 'two' ? 'toggleHeaderBorders' : ''}`}
-                            onClick={() => handleTabChange('two')}
-                        >2</button>
-
-                        <div id="ProfileHeader" className="toggleHeaderProfile">
-              <h2>Host</h2>
-            </div>
-
-                    </div>
-                </section> */}
-
-                <div className={`tab`}>
+                <div className={`tab`} style={{marginTop: '30px'}}>
                     {/* Profile Tab */}
                     <section id="profile" > {/* Changed hidden to inline style */}
                         <div className="profileContent">
@@ -195,7 +166,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country">Been A Fund Manager Since</h2>
+                                            <h2 className="country">Been A Fund Manager Since:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.yearStarted}</h3>
@@ -205,7 +176,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country">CMA License Number</h2>
+                                            <h2 className="country">CMA License Number:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.cmaLicenseNumber}</h3>
@@ -215,7 +186,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country">LinkedIn Profile / Professional Website</h2>
+                                            <h2 className="country">LinkedIn Profile / Professional Website:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.website}</h3>
@@ -225,7 +196,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country"> Hosted Funding Projects</h2>
+                                            <h2 className="country"> Hosted Funding Projects:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.propertyList.length}</h3>
@@ -236,7 +207,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country">Assets Under Management</h2>
+                                            <h2 className="country">Assets Under Management:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.assetsUnderManagement}</h3>
@@ -246,7 +217,7 @@ const MyProfile = () => {
 
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">
-                                            <h2 className="country">Physical Address</h2>
+                                            <h2 className="country">Physical Address:</h2>
                                         </div>
                                         <div className="verifiedDatumData">
                                             <h3 className="countryName">{user.physical}</h3>

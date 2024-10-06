@@ -10,6 +10,10 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer"
 import { grey } from "@mui/material/colors";
+import { LuGoal } from "react-icons/lu";
+import { FcBullish } from "react-icons/fc";
+import { FcExpired } from "react-icons/fc";
+
 
 import DOMPurify from 'dompurify';
 
@@ -235,21 +239,21 @@ const ListingDetails = () => {
       <section id="shopInfo">
         <div className="infoCard">
           <div className="shopPhoto_Description">
-            <div className="shopProfileImage"><img src="../assets/glossy_golden_coin.png" alt="Shop Profile Image" /></div>
+            <div className="shopProfileImage">
+              <img src="../assets/glossy_golden_coin.png" alt="Shop Profile Image" />
+            </div>
+
             <div className="shopDescription">
               <div className="shopDescriptionText">
                 <p>{listing.highlightDesc}</p>
               </div>
-              {/* <div className="shopAccessBtns">
-                <button className="followBtn">Add to WishList</button>
-              </div> */}
             </div>
           </div>
 
           <div className="shopAbout">
             <div className="aboutBlock">
               <div className="aboutIcon">
-                <img src="../assets/target.jpg" />
+                <LuGoal style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }} />
               </div>
 
               <div className="aboutDesciption">
@@ -265,7 +269,8 @@ const ListingDetails = () => {
 
             <div className="aboutBlock">
               <div className="aboutIcon">
-                <img src="../assets/returns.jpg" />
+                <FcBullish style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }} />
+
               </div>
 
               <div className="aboutDesciption">
@@ -281,7 +286,8 @@ const ListingDetails = () => {
 
             <div className="aboutBlock">
               <div className="aboutIcon">
-                <img src="../assets/calendar.png" />
+                <FcExpired style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }} />
+
               </div>
 
               <div className="aboutDesciption">
@@ -301,7 +307,7 @@ const ListingDetails = () => {
 
             <div className="aboutBlock">
               <div className="aboutIcon">
-                <img src={`http://localhost:3001/${listing.creator.profileImagePath.replace("public", "")}`} />
+                <img src={`http://localhost:3001/${listing.creator.profileImagePath.replace("public", "")}`} style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }} />
               </div>
 
               <div className="aboutDesciption">
@@ -336,35 +342,38 @@ const ListingDetails = () => {
         <h4>{listing.financialInstruments}</h4>
         <h4> {listing.type}</h4>
         <h4>Status: {timeLeft}</h4>
+      </div>
 
-        {/* <!-- Toggle Shop nav --> */}
-        <section id="toggleShop">
-          <div className="toggleBtns">
-            {/* <div id="ProductsHeader" className="toggleHeaderProducts toggleHeaderBorder">
-              <h2>Description</h2>
-            </div> */}
-            <button
-              id="ProductsHeader"
-              className={`header-btn toggleHeaderProducts ${activeTab === 'description' ? 'toggleHeaderBorder' : ''}`}
-              onClick={() => handleTabChange('description')}
-            >Description</button>
-            <button
-              id="ProductsHeader"
-              className={`header-btn toggleHeaderProducts ${activeTab === 'host' ? 'toggleHeaderBorder' : ''}`}
-              onClick={() => handleTabChange('host')}
-            >Host</button>
-            <button
-              className={`header-btn toggleHeaderProducts ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
-              onClick={() => handleTabChange('updates')}
-            >Updates</button>
-          </div>
-          <div className="toggleBar"></div>
-        </section>
+      {/* <!-- Toggle Shop nav --> */}
+      <section id="toggleShop">
+        <div className="toggleBtns">
+          <button
+            id="ProductsHeader"
+            className={`header-btn toggleHeaderProducts ${activeTab === 'description' ? 'toggleHeaderBorder' : ''}`}
+            onClick={() => handleTabChange('description')}
+          >Description</button>
+
+          <button
+            id="ProductsHeader"
+            className={`header-btn toggleHeaderProducts ${activeTab === 'host' ? 'toggleHeaderBorder' : ''}`}
+            onClick={() => handleTabChange('host')}
+          >Host</button>
+
+          <button
+            className={`header-btn toggleHeaderProducts ${activeTab === 'updates' ? 'toggleHeaderBorder' : ''}`}
+            onClick={() => handleTabChange('updates')}
+          >Updates</button>
+
+        </div>
+
+      </section>
 
 
-        <div className={`tab ${activeTab === 'description' ? 'description' : 'hidden'}`}>
+      <div className={`tab ${activeTab === 'description' ? 'description' : 'hidden'}`}>
+        <h2 style={{ paddingLeft: '-40px' }}>Description:</h2>
+
+        <div className="tabb">
           <div className='descriptionText'>
-            <h2>Description</h2>
             <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(listing.description) }} />
           </div>
 
@@ -403,8 +412,6 @@ const ListingDetails = () => {
                 </div>
               </div>
 
-
-
               <div className="totalPrice">
                 {guestCount > 1 ? (
                   <h2>
@@ -428,108 +435,113 @@ const ListingDetails = () => {
           </div>
         </div>
 
-        <div className={`tab  ${activeTab === 'host' ? 'host' : 'hidden'}`}>
-          {/* Profile Tab */}
-          <section id="profile" > {/* Changed hidden to inline style */}
-            <div className="profileContent">
-              <div className="verifiedProfile">
-                <div className="verifiedProfileHeader">
-                  <h1>Professional Details:</h1>
+      </div>
+
+      <div className={`tab  ${activeTab === 'host' ? 'host' : 'hidden'}`}>
+        {/* Profile Tab */}
+        <h2 style={{ paddingLeft: '-120px',   marginBottom: '30px' }}>Professional Details:</h2>
+        <section id="profile" className="tabb"> {/* Changed hidden to inline style */}
+          <div className="profileContent">
+            <div className="verifiedProfile">
+              <div className="verifiedProfileData">
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">Company / Firm Name:</h2>
+                  </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.firmName}</h3>
+                  </div>
                 </div>
-                {/* <div className="verifiedProfileHeader2">
-                                        <h2>All information below has been verified</h2>
-                                    </div> */}
-                <div className="verifiedProfileData">
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Company / Firm Name</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.firmName}</h3>
-                    </div>
+                <div className="separator"></div>
+
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">Been A Fund Manager Since:</h2>
                   </div>
-                  <div className="separator"></div>
-
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Been A Fund Manager Since</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.yearStarted}</h3>
-                    </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.yearStarted}</h3>
                   </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
 
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">CMA License Number</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.cmaLicenseNumber}</h3>
-                    </div>
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">CMA License Number:</h2>
                   </div>
-                  <div className="separator"></div>
-
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">LinkedIn Profile / Professional Website</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.website}</h3>
-                    </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.cmaLicenseNumber}</h3>
                   </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
 
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country"> Hosted Funding Projects</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.propertyList.length}</h3>
-                    </div>
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">LinkedIn Profile / Professional Website:</h2>
                   </div>
-                  <div className="separator"></div>
-
-
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Assets Under Management</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.assetsUnderManagement.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
-                    </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.website}</h3>
                   </div>
-                  <div className="separator"></div>
+                </div>
+                <div className="separator"></div>
 
-                  <div className="verifiedDatum">
-                    <div className="verifiedDatumTitle">
-                      <h2 className="country">Physical Address</h2>
-                    </div>
-                    <div className="verifiedDatumData">
-                      <h3 className="countryName">{listing.creator.physical}</h3>
-                    </div>
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country"> Hosted Funding Projects:</h2>
+                  </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.propertyList.length}</h3>
+                  </div>
+                </div>
+                <div className="separator"></div>
+
+
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">Assets Under Management:</h2>
+                  </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.assetsUnderManagement.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
+                  </div>
+                </div>
+                <div className="separator"></div>
+
+                <div className="verifiedDatum">
+                  <div className="verifiedDatumTitle">
+                    <h2 className="country">Physical Address:</h2>
+                  </div>
+                  <div className="verifiedDatumData">
+                    <h3 className="countryName">{listing.creator.physical}</h3>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-        <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
-          <h2>Project Updates:</h2>
+          </div>
+        </section>
+      </div>
+
+      <div className={`tab ${activeTab === 'updates' ? 'updates' : 'hidden'}`}>
+        <h2 style={{ paddingLeft: '40px' }}>Project Updates:</h2>
+        <div className="tabbU">
+
           {updates.map((update) => (
             <div key={update._id} className="update-item" onClick={() => navigate(`/update/${update._id}`)}>
-              <div className="update-icon">
-                <YouTubeThumbnail videoLink={update.videoLink} />
-              </div>
-              <div className="update-description">
-                <div className="update-descriptionTitle">
-                  <h3>{update.title}:</h3>
+              <div className="update-itemm">
+                <div className="update-icon">
+                  <YouTubeThumbnail videoLink={update.videoLink} />
                 </div>
-                <div className="update-descriptionP">
-                  <p>
-                    {stripHtmlTags(update.description).split(' ').slice(0, 11).join(' ')}
-                    {stripHtmlTags(update.description).split(' ').length > 11 ? '...' : ''}
-                  </p>
+
+                <div className="update-description">
+                  <div className="update-descriptionTitle">
+                    <h3>{update.title}:</h3>
+                  </div>
+
+                  <div className="update-descriptionP">
+                    <p>
+                      {stripHtmlTags(update.description).split(' ').slice(0, 6).join(' ')}
+                      {stripHtmlTags(update.description).split(' ').length > 6 ? '...' : ''}
+                    </p>
+                  </div>
+
                 </div>
               </div>
             </div>

@@ -161,124 +161,7 @@
     color: rgba(59, 59, 59, 0.8);
   }
 
-  /* ---------toggleShop----------- */
-
-#toggleShops{
-    margin-top: 40px;
-    margin-bottom: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .toggleBtnss{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    
-  }
-
-  .toggleBtnss button{
-    width: 50px;
-    height: 50px;
-    color: blueviolet;
-    font-size: larger;
-    border-radius: 50%;
-    text-align: center;
-    justify-content: center;
-  }
-  
-  .toggleBtnss h2{
-    font-weight: 600;
-    font-size: x-large;
-  }
-  
-  .toggleHeaderProductss{
-    width: 100px;
-    height: 40px;
-    margin-left: 15px;
-    text-align: center;
-    padding-top: 8px;
-    border: 2px solid blueviolet;
-  }
-  
-  .toggleHeaderProductss:hover{
-    border: 2px solid #000;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .toggleHeaderBorders{
-    border: 2px solid black;
-    color: black;
-    border-radius: 7px 7px 0 0;
-
-  }
-  
-  .toggleHeaderProfile{
-    width: 100px;
-    height: 40px;
-    margin-left: 15px;
-    text-align: center;
-    padding-top: 8px;
-  }
-  
-  .toggleHeaderProfile:hover{
-    border: 1px solid #000;
-    border-radius: 7px 7px 0 0;
-  }
-  
-  .toggleHeaderVideos{
-    width: 100px;
-    height: 40px;
-    margin-left: 15px;
-    text-align: center;
-    padding-top: 8px;
-  }
-  
-  .toggleHeaderVideos:hover{
-    border: 1px solid #000;
-    border-radius: 7px 7px 0 0;
-  }
-  
-  .toggleHeaderProducts:hover{
-    cursor: pointer;
-  }
-  
-  .toggleHeaderProfile:hover{
-    cursor: pointer;
-  }
-  
-  .toggleHeaderVideos:hover{
-    cursor: pointer;
-  }
-  
-  .toggleHeaderProducts h2{
-    font-size: large;
-   
-  }
-  
-  .toggleHeaderProfile h2{
-    font-size: large;
-   
-  }
-  
-  .toggleHeaderVideos h2{
-    font-size: large;
-   
-  }
-  
-  .toggleBar{
-    margin: -2px auto;
-    width: 95%;
-    height: 2px;
-    background-color: #000;
-  }
-
-  .tab{
-    margin: 40px auto;
-  }
-
+ 
   /* ------------profile---------------------- */
 #profile{
     width: 90%;
@@ -424,6 +307,9 @@
   }
 
   @media only screen and (max-width: 600px) {
+    #profile{
+      height: 500px;
+    }
     .shopPhoto_Descriptions{
         flex-direction: column;
         // background-color: red;

@@ -1,7 +1,15 @@
 @import "./variables.scss";
 @import "./breakpoints.scss";
 
+.category-listt{
+  width: 100%;
+}
+
 .category-list {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  // background-color: red;
   padding: 50px 80px;
   display: flex;
   justify-content: center;
@@ -58,7 +66,7 @@
   .category-list{
     flex-wrap: nowrap;
     gap: 20px;
-    text-align: center;
+    width: 70%;
   }
   .category {
     display: flex;

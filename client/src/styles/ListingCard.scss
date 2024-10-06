@@ -99,9 +99,15 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+  .listing-card{
+    width: 100%;
+    
+  }
+}
 @media only screen and (max-width: 600px) {
   .listing-card{
-    width: 70%;
+    width: 75%;
   }
 }
 
@@ -128,5 +134,5 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  
+
 }
