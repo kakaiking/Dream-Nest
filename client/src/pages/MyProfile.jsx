@@ -7,6 +7,13 @@ import "../styles/MyProfile.scss"
 import { useParams, Link } from 'react-router-dom';
 import { setProfileDetails, setPropertyList } from '../redux/state';
 import ListingCard from '../components/ListingCard';
+import { FaPeoplePulling } from "react-icons/fa6";
+import { FaBuildingColumns } from "react-icons/fa6";
+import { IoIosMail } from "react-icons/io";
+import { LuPhone } from "react-icons/lu";
+
+
+
 
 const MyProfile = () => {
     const [user, setUser] = useState({});
@@ -74,7 +81,7 @@ const MyProfile = () => {
                             <div className="shopAbout">
                                 <div className="aboutBlock">
                                     <div className="aboutIcon">
-                                        <img src="../assets/target.jpg" />
+                                    <FaPeoplePulling style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }}/>
                                     </div>
 
                                     <div className="aboutDesciption">
@@ -90,7 +97,7 @@ const MyProfile = () => {
 
                                 <div className="aboutBlock">
                                     <div className="aboutIcon">
-                                        <img src="../assets/calendar.png" />
+                                    <FaBuildingColumns style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }}/>
                                     </div>
 
                                     <div className="aboutDesciption">
@@ -106,7 +113,7 @@ const MyProfile = () => {
 
                                 <div className="aboutBlock">
                                     <div className="aboutIcon">
-                                        <img src="../assets/returns.jpg" />
+                                    <IoIosMail style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }}/>
                                     </div>
 
                                     <div className="aboutDesciption">
@@ -124,7 +131,7 @@ const MyProfile = () => {
 
                                 <div className="aboutBlock">
                                     <div className="aboutIcon">
-                                        {/* <img src={`http://localhost:3001/${listing.creator.profileImagePath.replace("public", "")}`} /> */}
+                                    <LuPhone style={{ width: '70%', minWidth: '35px', height: '70%', margin: '8%', borderRadius: '7px', objectFit: 'cover' }}/>
                                     </div>
 
                                     <div className="aboutDesciption">
@@ -150,9 +157,7 @@ const MyProfile = () => {
                                 <div className="verifiedProfileHeader">
                                     <h1>Professional Details:</h1>
                                 </div>
-                                {/* <div className="verifiedProfileHeader2">
-                                        <h2>All information below has been verified</h2>
-                                    </div> */}
+                                
                                 <div className="verifiedProfileData">
                                     <div className="verifiedDatum">
                                         <div className="verifiedDatumTitle">

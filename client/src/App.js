@@ -15,6 +15,7 @@ import MyProfile from "./pages/MyProfile";
 import FaqPage from "./pages/FaqPage";
 import CreateUpdate from "./components/CreateUpdate";
 import UpdateDetails from "./components/UpdateDetails";
+import FileReturnsPage from "./pages/FileReturnsPage";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           <Route path="/:userId/reservations" element={<ReservationList />} />
           <Route path="/:userId/details" element={<MyProfile />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/:userId/fileReturns" element={<FileReturnsPage />} />
+
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -12,6 +12,9 @@ const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
 
   const user = useSelector((state) => state.user);
+  const listings = useSelector((state) => state.listings);
+
+  
 
   const dispatch = useDispatch();
 
@@ -86,7 +89,7 @@ const Navbar = () => {
             <Link to={`/${user._id}/wishList`}>Wish List</Link>
             <Link to={`/${user._id}/details`}>My Profile</Link>
             <Link to="/create-listing">Host A Project</Link> <hr />
-
+            <Link to={`/${user._id}/fileReturns`}>File returns</Link>
             <Link
               to="/login"
               onClick={() => {

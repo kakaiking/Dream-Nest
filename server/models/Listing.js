@@ -50,6 +50,11 @@ const ListingSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Update',
     }],
+    status: {
+      type: String,
+      enum: ['notFiled', 'filed'],
+      default: 'notFiled'
+    }
   },
   { timestamps: true}
 )
