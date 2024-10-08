@@ -552,8 +552,8 @@ const ListingDetails = () => {
               onClick={handleCreateUpdate}
               style={{ justifyContent: 'center', textAlign: 'center', padding: '1%', fontSize: 'larger', fontWeight: 'bold', marginTop: '30px' }}
             >
-              Add A New Update
-              <AddCircle />
+              
+              <AddCircle style={{fontSize: '100px', color: '#24355A'}}/>
             </button>
           )}
         </div>

@@ -543,9 +543,12 @@ verifiedDatumTitle{
 
 .tabbU {
   padding: 0 20px;
+  height: auto;
+  min-height: 300px;
   width: 85%;
   // background-color: yellow;
   margin: 20px auto;
+  position: relative;
 }
 
 .tabb .descriptionText {
@@ -783,13 +786,15 @@ verifiedDatumTitle{
 
 
 .updates {
-  // background-color : rgba(10,100,100,0.1);
+  // background-color : red;
   padding: 10px;
   border-radius: 10px;
   height: auto;
+  min-height: 300px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  
 }
 
 .update-item {
@@ -868,6 +873,8 @@ verifiedDatumTitle{
 .floating-add-btn {
   position: absolute;
   right: 130px;
+  bottom: 30px;
+  border: none;
 }
 
 .floating-add-btn:hover {
