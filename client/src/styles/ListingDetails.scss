@@ -542,13 +542,15 @@ verifiedDatumTitle{
 }
 
 .tabbU {
-  padding: 0 20px;
+  padding: 0 20px 150px 20px;
   height: auto;
-  min-height: 300px;
+  min-height: 200px;
   width: 85%;
   // background-color: yellow;
   margin: 20px auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .tabb .descriptionText {
@@ -872,7 +874,7 @@ verifiedDatumTitle{
 
 .floating-add-btn {
   position: absolute;
-  right: 130px;
+  right: 100px;
   bottom: 30px;
   border: none;
 }

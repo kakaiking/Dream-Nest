@@ -36,7 +36,7 @@ const SearchPage = () => {
   return loading ? <Loader /> : (
     <>
       <Navbar />
-      <h1 className="title-list">{search}</h1>
+      <h1 className="title-list">Showing Results for: '{search}'</h1>
       <div className="list">
         {listings?.map(
           ({

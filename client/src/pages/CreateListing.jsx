@@ -9,6 +9,7 @@ import Footer from "../components/Footer"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../styles/QuillEditor.scss';
+import { useSnackbar } from 'notistack'
 
 
 
@@ -17,6 +18,8 @@ import '../styles/QuillEditor.scss';
 const CreateListing = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+
 
   /* LOCATION */
   const [formLocation, setFormLocation] = useState({
@@ -87,10 +90,12 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
+        enqueueSnackbar('Listing Created Successfully', { variant: 'success'})
         navigate("/");
       }
     } catch (err) {
-      console.log("Publish Listing failed", err.message);
+      enqueueSnackbar('Error', {variant: 'error'});
+      console.log("Publish Listing failed:", err.message);
     }
   };
 

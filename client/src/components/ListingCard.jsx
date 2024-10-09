@@ -58,11 +58,11 @@ const ListingCard = ({
   const getBackgroundGradient = () => {
     switch (category) {
       case "Fund Manager":
-        return "linear-gradient(330deg, #c33764, #1d2671)";
+        return "linear-gradient(to left, #aa076b, #300030";
       case "Enterprise":
-        return "linear-gradient(330deg, #43cea2, #185a9d)";
+        return "linear-gradient(to left, #6441a5, #2a0845)";
       case "Non-Profit":
-        return "linear-gradient(330deg, #ff9966, #ff5e62)";
+        return "linear-gradient(to right, #003000, #0f9b0f";
       default:
         return "linear-gradient(330deg, #c33764, #1d2671)"; // Default gradient
     }
